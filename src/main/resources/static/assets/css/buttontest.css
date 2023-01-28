@@ -1,0 +1,71 @@
+button{
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: 10px 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+button.accept{
+    background-color: #16a34a;
+    color: white;
+}
+
+button.accept:hover{
+    background-color: #22c55e;
+    color: white;
+}
+
+button.cancel{
+    background-color: #e11d48;
+    color: white;
+}
+
+button.cancel:hover{
+    background-color: #f43f5e;
+    color: white;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+dialog{
+    border: 5px solid green;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+#dialog-accept[open] {
+    animation: showBottomRight 1s ease normal;
+    pointer-events: all;
+}
+
+#dialog-cancel[open] {
+    animation: showTopRight 1s ease normal;
+    pointer-events: all;
+}
+
+
+
+@keyframes showBottomRight{
+    from {
+        transform: translateY(50vw) translateX(50vh);
+    }
+    to {
+        transform: translateY(0%) translateX(0);
+    }
+}
+
+@keyframes showTopRight{
+    from {
+        transform: translateY(-50vw) translateX(50vh);
+    }
+    to {
+        transform: translateY(0%) translateX(0);
+    }
+}

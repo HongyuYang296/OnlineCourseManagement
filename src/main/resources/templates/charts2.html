@@ -1,0 +1,41 @@
+<div>
+    <select class="form-control" id="op1">
+        <option selected="selected">Select</option>
+    </select>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+    // $(document).ready(function () {
+    //     $.ajax({
+    //         url: "/usersData",
+    //         datatype: "JSON",
+    //         type: "Get",
+    //         success: function (data) {
+    //             debugger;
+    //             for(var i=0;i<data.length;i++)
+    //             {
+    //                 var opt = new Option(data[i].Bname);
+    //                 $("#op1").append(opt);
+    //             }
+    //             console.log(data);
+    //         }
+    //     });
+    // });
+
+
+    $.ajax({
+        async: false,
+        url:"/method2",
+        type:"get",
+        dataType:"json",
+        success:function (data) {
+            for(var i=0;i<data.length;i++)
+            {
+                var opt = new Option(data[i][0]);
+                $("#op1").append(opt);
+            }
+        }
+    });
+</script>

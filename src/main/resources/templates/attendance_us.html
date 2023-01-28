@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Manage attendance</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo2.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/deleteModal.css" rel="stylesheet">
+  <link href="assets/css/attendanceTable.css" rel="stylesheet">
+  <link href="assets/css/pagination.css" rel="stylesheet">
+  <link href="assets/css/uploadBtn.css" rel="stylesheet">
+
+
+
+  <!-- =======================================================
+  * Template Name: Gp - v4.9.1
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+
+</div>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center justify-content-lg-between">
+
+    <!--        <h1 class="logo me-auto me-lg-0"><a href="..">Gpp<span>.</span></a></h1>-->
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <a href=".." class="logo me-auto me-lg-0"><img src="assets/img/logo_white.png" alt="" class="img-fluid" style="width:70%"></a>
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a class="nav-link scrollto" href="..">Home</a></li>
+        <li><a class="nav-link scrollto" href="/codeList">CodeList</a></li>
+        <li><a class="nav-link scrollto active" href="/attendance">Attendance</a></li>
+        <li><a class="nav-link scrollto " href=/users>Database</a></li>
+        <li><a class="nav-link scrollto " href=/statistics>Statistics</a></li>
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+    <a href="" class="get-started-btn" onclick="runApp()" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload</a>
+
+  </div>
+</header><!-- End Header -->
+
+<!--hero section-->
+<section id="hero" style="height:460px; display:block;" class="d-flex flex-column justify-content-center align-items-center">
+  <br>
+  <div class="container text-center" data-aos="fade-up">
+    <br>
+    <br>
+    <h1>VVIP US Attendance</h1>
+    <br>
+    <div class="container2">
+      <div style="padding-top: 40px;text-align: center">
+        <div class="row" style="padding-left: 5%; ">
+          <div style="width: fit-content; text-align: right" class="col-lg-6">
+            <form th:action="@{attendance_us}" method="get">
+              <input onchange="saveCookie()" style="width: 105px; height: 40px" type="date" class="date" id="searchDate" name="searchDate" placeholder="select date">
+              <button style="height: 40px" class="button1" type="submit">search</button>
+            </form>
+          </div>
+
+          <div style="width: fit-content; text-align: left;" class="col-lg-3">
+            <form
+                    th:action="@{attendance/searchError/result}" method="get">
+              <button style="height: 40px; width: 110px" class="button1" type="submit">Search Error </button>
+            </form>
+          </div>
+          <div class="col-md-1">
+            <button style="height: 40px;" onclick="capture()" class="button1"><i class="fa fa-camera" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <br>
+        <div id="dates" style="text-align: center; font-size: 20px; color: whitesmoke">
+          <th:block th:text="${date}" >
+          </th:block>
+        </div>
+
+
+      </div>
+    </div>
+    <br>
+
+    <div class="row" style="width: 60vh; margin-left: 27%">
+      <div class="col-md-3">
+        <a href="attendance_us">
+          <img src="https://cdn-icons-png.flaticon.com/512/478/478024.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/478/478075.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/478/478024.png'"  style="width: 45%"/>
+        </a>
+        <h4 style="color: whitesmoke; font-size: 16px">美盘解盘</h4>
+      </div>
+      <div class="col-md-3">
+        <a href="/attendance_euro">
+          <img src="https://cdn-icons-png.flaticon.com/512/2963/2963263.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963292.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963263.png'" style="width: 45%"/></a>
+        <h4 style="color: whitesmoke; font-size: 16px">欧盘解盘</h4>
+      </div>
+      <div class="col-md-3">
+        <a href="/attendance">
+          <img src="https://cdn-icons-png.flaticon.com/512/2601/2601491.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601466.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601491.png'" style="width: 45%"/>
+        </a>
+        <h4 style="color: whitesmoke; font-size: 16px">常规网课</h4>
+      </div>
+
+      <div class="col-md-3">
+        <a href="/attendance_total">
+          <img src="https://cdn-icons-png.flaticon.com/512/5110/5110770.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/5110/5110785.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/5110/5110770.png'" style="width: 45%"/>
+        </a>
+        <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 15px">统计</h4>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <section id="about" class="about" style="background-color: #babbbc">
+    <div style="width: 90%; margin: -3% auto;" data-aos="fade-up">
+
+
+      <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <!--		Show Numbers Of Rows 		-->
+          <select class="selectmenu-element" data-name="selectmenu-1" id="maxRows">
+            <option disabled selected>Select Max Row</option>-->
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="5000">Show ALL Rows</option>
+          </select>
+        </div>
+
+
+        <div class="col-md-3" style="text-align: right">
+          <select  class="selectmenu-element"  data-name="selectmenu-1" onchange="FilterkeyCode_all_table()" id="searchCode" name="searchCode">
+            <option disabled selected>Name</option>-->
+            <option value="0">Flynn</option>
+            <option value="111">William</option>
+            <option value="111111">Jason</option>
+            <option value="222">Zoe</option>
+            <option value="222222">Kimmy</option>
+            <option value="333">Emily</option>
+            <option value="3331">Nate</option>
+            <option value="3332">Tiffany</option>
+            <option value="333333">Sam</option>
+            <option value="3334">Ethan</option>
+            <option value="3335">Eric</option>
+            <option value="444">Jackson</option>
+            <option value="444222">Ann</option>
+            <option value="444444">Harris</option>
+            <option value="444555">Will</option>
+            <option value="555">Sherry</option>
+            <option value="555111">Zane</option>
+            <option value="555555">Elva</option>
+            <option value="666">JackHu</option>
+            <option value="777">Sheldon</option>
+            <option value="777111">LeoLiang</option>
+            <option value="777222">Bambi</option>
+            <option value="888">Mia</option>
+            <option value="8888">Michael</option>
+            <option value="888888">Leo</option>
+            <option value="999">Joy</option>
+            <option value="9991">Leah</option>
+            <option value="all" >All</option>
+          </select>
+        </div>
+
+        <div class="col-md-3" style="text-align: left;">
+          <select  class="selectmenu-element"  data-name="selectmenu-1" onchange="FilterkeyGroup_all_table()" id="searchGroup" name="searchCode">
+            <option disabled selected>Group</option>-->
+            <option value="Emily">Emily</option>
+            <option value="Jackson">Jackson</option>
+            <option value="Sheldon">Sheldon</option>
+            <option value="Mel Sales">Mel Sales</option>
+            <option value="Sydney">Sydney</option>
+            <option value="all">All</option>
+            <!--              group
+            3331,3332,3334 333, Emily
+            444, 444222, 444444, 444555 Jackson
+            666, 777, 777111, 777222, Sheldon
+            111111, 333333, 555555, 888888 Sheldon
+            -->
+          </select>
+        </div>
+
+
+        <div class="col-md-3">
+          <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="form-control">
+        </div>
+      </div>
+
+      <div id="screenShot">
+        <table id= "table-id2" class="responsive-table">
+          <!-- Responsive Table Header Section -->
+          <thead class="responsive-table__head">
+          <tr class="responsive-table__row">
+            <th class="responsive-table__head__title">Name</th>
+            <th class="responsive-table__head__title responsive-table__head__title--email">Email</th>
+            <th class="responsive-table__head__title">Join/Left Time</th>
+            <th class="responsive-table__head__title">Time in session</th>
+            <th class="responsive-table__head__title">Code</th>
+          </tr>
+          </thead>
+          <!-- Responsive Table Body Section -->
+          <tbody class="responsive-table__body">
+          <th:block th:each="attendance : ${listUsers}">
+            <tr class="responsive-table__row">
+              <td >[[${attendance.firstName}]]&nbsp;[[${attendance.lastName}]]</td>
+              <td >[[${attendance.email}]]</td>
+              <td >[[${attendance.joinLeftTime}]]</td>
+              <td >[[${attendance.timeSession}]]</td>
+              <td id="code" >[[${attendance.code}]]</td>
+            </tr>
+          </th:block>
+          </tbody>
+        </table>
+      </div>
+
+      <!--		Start Pagination -->
+      <div class='pagination-container'>
+        <nav aria-label="...">
+          <ul class="pagination">
+            <li class="page-item disabled">
+              <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">2</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+      <div class="rows_count">Showing 11 to 20 of 91 entries</div>
+
+
+    </div>
+    </div>
+    </div>
+  </section><!-- End About Section -->
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="upload">
+          <div class="upload-files">
+            <header>
+              <p>
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                <span class="up">up</span>
+                <span class="load">load</span>
+              </p>
+            </header>
+            <div class="body" id="drop">
+              <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
+              <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href="" id="triggerFile">browse</a> to begin the upload</p>
+              <input type="file" name="file" multiple="multiple" form="uploadFile"/>
+            </div>
+            <footer>
+              <div class="divider">
+                <span><AR>FILES</AR></span>
+              </div>
+              <div class="list-files">
+                <!--   template   -->
+              </div>
+              <form th:action="@{/upload/choose}" method="post" enctype="multipart/form-data" id="uploadFile">
+                <!--                        <input type="file" name="file">-->
+                <!--        <input type="date" id="uploadDate" name="date">-->
+              </form>
+              <input  class="importar2" type="date"  id="uploadDate" required name="date" form="uploadFile">
+              <button class="importar" form="uploadFile">UPDATE FILES</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3><a href=".." class="logo me-auto me-lg-0"><img src="../../assets/img/logo_white.png" alt="" class="img-fluid" style="width:40%"></a>
+            </h3>
+            <p>
+              990 Whitehorse Road <br>
+              Box Hill, VIC 3128, AU<br><br>
+              <strong>Phone:</strong> +61 416572418<br>
+              <strong>Email:</strong> mia.wang@prosperomarkets.com<br>
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Our Service</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="..">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/codeList">Code List</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/attendance">Attendance Sheets</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/users">Customer Database</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/statistics">Statistics</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="https://analytics.gotowebinar.com/">GoTo Webinar</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="https://admin.prosperomarkets.com/">Management Center</a></li>
+
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Gp</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">Hongyu</a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+<!-- ======= Footer ======= -->
+
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/b83f27d12f.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/modal.js"></script>
+<script src="assets/js/table.js"></script>
+<script src="assets/js/pagination.js"></script>
+<script src="assets/js/datepicker.js"></script>
+<script src="assets/js/screenshot.js"></script>
+<script src="assets/js/uploadBtn.js"></script>
+
+</body>
+
+</html>

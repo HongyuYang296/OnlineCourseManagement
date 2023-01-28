@@ -1,0 +1,126 @@
+/*.pagination-container {*/
+/*    width: 70%;*/
+/*    float:left;*/
+/*}*/
+
+/*.rows_count {*/
+/*    width: 20%;*/
+/*    float:right;*/
+/*    text-align:right;*/
+/*    color: #999;*/
+/*}*/
+.num_rows {
+    width: 20%;
+    float:left;
+}
+.add_new{
+    width: 20%;
+    float:right;
+}
+/*body{*/
+
+/*    background-color: #eee;*/
+/*}*/
+
+/*table th , table td{*/
+/*    text-align: center;*/
+/*}*/
+
+table tr:nth-child(even){
+    background-color: #e4e3e3
+}
+
+th {
+    background: #333;
+    color: #fff;
+}
+
+.pagination {
+    margin: 0;
+}
+
+.pagination li:hover{
+    cursor: pointer;
+}
+
+.header_wrap {
+    padding:30px 0;
+}
+.num_rows {
+    width: 8%;
+    float:left;
+}
+.tb_search{
+    width: 20%;
+    float:right;
+}
+
+.tb_date{
+    width: 50%;
+}
+
+
+.pagination-container {
+    width: 70%;
+    float:left;
+}
+
+.rows_count {
+    width: 20%;
+    float:right;
+    text-align:right;
+    color: #999;
+}
+
+select.selectmenu-element, .selectmenu-element::part(button) {
+    color: white;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 3px;
+    border: 0 none;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+select.selectmenu-element {
+    border-right: 8px solid #333;
+}
+.selectmenu-element::part(button) {
+    position: relative;
+}
+.selectmenu-element::part(button)::before {
+    position: absolute;
+    top: 50%;
+    right: 0.65em;
+    transform: translateY(-50%);
+    content: "▿";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1em;
+    height: 100%;
+    font-size: 1.25em;
+    line-height: 1;
+    color: white;
+    background-color: inherit;
+}
+.selectmenu-element::part(listbox) {
+    padding: 0;
+    border: 1px solid #333;
+    border-radius: 0 0 3px 3px;
+    margin-top: -3px;
+    box-shadow: none;
+}
+.selectmenu-element option {
+    padding: 5px 10px;
+    background: inherit;
+}
+.selectmenu-element option[disabled] {
+    color: #333;
+    font-weight: bold;
+    pointer-events: none;
+}
+.selectmenu-element option:hover {
+    background: #333;
+    color: white;
+}

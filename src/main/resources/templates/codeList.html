@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Manage codeList</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <!-- JQUERY FROM GOOGLE API -->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      $("#lets_search").bind('submit',function() {
+        var value = $('#str').val();
+        $.post('db_query.php',{value:value}, function(data){
+          $("#search_results").html(data);
+        });
+        return false;
+      });
+    });
+  </script>
+
+
+
+
+  <!-- Favicons -->
+  <link href="assets/img/logo2.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/deleteModal.css" rel="stylesheet">
+ <link href="assets/css/table.css" rel="stylesheet">
+  <link href="assets/css/search.css" rel="stylesheet">
+  <link href="assets/css/button.css" rel="stylesheet">
+  <link href="assets/css/uploadBtn.css" rel="stylesheet">
+  <link href="assets/css/editButton.css" rel="stylesheet">
+
+
+
+  <!-- =======================================================
+  * Template Name: Gp - v4.9.1
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center justify-content-lg-between">
+
+    <!--        <h1 class="logo me-auto me-lg-0"><a href="..">Gpp<span>.</span></a></h1>-->
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <a href=".." class="logo me-auto me-lg-0"><img src="assets/img/logo_white.png" alt="" class="img-fluid" style="width:70%"></a>
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a class="nav-link scrollto" href="..">Home</a></li>
+        <li><a class="nav-link scrollto active" href="/codeList">CodeList</a></li>
+        <li><a class="nav-link scrollto" href="/attendance">Attendance</a></li>
+        <li><a class="nav-link scrollto " href=/users>Database</a></li>
+        <li><a class="nav-link scrollto " href=/statistics>Statistics</a></li>
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+    <a href="" class="get-started-btn" onclick="runApp()" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload</a>
+
+  </div>
+</header><!-- End Header -->
+
+
+<main id="main">
+  <section id="about" class="about" style="background-image: url('/assets/img/hero-bg.jpg')">
+    <div class="container" style="text-align: center" data-aos="fade-up">
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="container-fluid text-center">
+        <h1 style="color:whitesmoke">
+          Prospero Team Code List
+        </h1>
+        <br>
+
+        <div class="container2">
+        <div style="padding-top:25px;padding-left: 45px;  width: 400px; text-align: center">
+          <form th:action="@{codeList}" method="get" class="search-form form">
+            <label>
+              <span class="screen-reader-text">Search for...</span>
+              <input type="search" class="search-field" placeholder="Type something..." value="" name="keyword" title="" />
+            </label>
+            <input type="submit" class="search-submit button" value="&#xf002" />
+            <p>&nbsp;&nbsp;&nbsp;</p>
+
+            <a type="button" class="edit-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="fa-solid fa-user-plus">&nbsp;</i>
+            </a>
+
+          </form>
+        </div>
+        </div>
+      </div>
+
+
+<!--      <form th:action="@{codeList}" method="get">-->
+<!--        <input type="search" id="gsearch" name="keyword">-->
+<!--        <input type="submit" class="search-submit button" value="&#xf002">-->
+<!--      </form>-->
+
+
+      <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+      </div>
+
+      <div class="container">
+        <table class="responsive-table">
+          <!-- Responsive Table Header Section -->
+          <thead class="responsive-table__head">
+          <tr class="responsive-table__row">
+            <th class="responsive-table__head__title responsive-table__head__title--name">Name</th>
+            <th class="responsive-table__head__title responsive-table__head__title--status">Code</th>
+            <th class="responsive-table__head__title responsive-table__head__title--types">Loc</th>
+            <th class="responsive-table__head__title responsive-table__head__title--edit"></th>
+
+          </tr>
+          </thead>
+          <!-- Responsive Table Body Section -->
+          <tbody class="responsive-table__body">
+          <th:block th:each="user : ${listUsers}">
+            <tr class="responsive-table__row">
+              <td class="responsive-table__body__text responsive-table__body__text--name">
+                <svg class="user-icon" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m256.025 483.334 101.429-25.614c57.895-48.074 94.771-120.586 94.771-201.719 0-125.144-87.711-229.801-205.012-255.852-137.316 4.631-247.213 117.407-247.213 255.851 0 71.112 29 135.446 75.812 181.836z" fill="#cbe2ff" />
+                  <path d="m446.914 256c0 83.915-40.381 158.391-102.765 205.079l92.031-23.241c46.815-46.39 75.82-110.724 75.82-181.838 0-141.385-114.615-256-256-256-11.024 0-21.886.698-32.543 2.05 126.019 15.988 223.457 123.59 223.457 253.95z" fill="#bed8fb" />
+                  <path d="m319.621 96.952c0-13.075-10.599-23.674-23.674-23.674h-81.582c-30.091 0-54.485 24.394-54.485 54.485v60.493h192.209v-59.635c0-13.075-10.599-23.674-23.674-23.674h-.798c-4.416 0-7.996-3.579-7.996-7.995z" fill="#365e7d" />
+                  <path d="m328.415 104.947h-.798c-4.416 0-7.996-3.58-7.996-7.996 0-13.075-10.599-23.674-23.674-23.674h-8.945v114.978h65.086v-59.635c.001-13.073-10.599-23.673-23.673-23.673z" fill="#2b4d66" />
+                  <path d="m425.045 372.355c-6.259-6.182-14.001-10.963-22.79-13.745l-69.891-22.128-76.348-2.683-76.38 2.683-69.891 22.128c-23.644 7.486-39.713 29.428-39.713 54.229v19.094c44.789 47.328 107.451 77.568 177.183 79.92 78.128-17.353 143.129-69.576 177.83-139.498z" fill="#4a80aa" />
+                  <path d="m441.968 431.932v-19.094c0-17.536-8.04-33.635-21.105-44.213-37.111 75.626-110.422 130.268-197.346 141.317 10.492 1.329 21.178 2.038 32.026 2.057 10.423-.016 20.708-.62 30.824-1.782 61.031-7.212 115.485-35.894 155.601-78.285z" fill="#407093" />
+                  <path d="m261.796 508.168c15.489-30.751 55.822-118.067 44.321-172.609l-50.101-19.499-50.148 19.5c-11.856 56.225 31.37 147.277 45.681 175.29 3.442-.826 6.859-1.721 10.247-2.682z" fill="#e4f6ff" />
+                  <path d="m288.197 483.789-20.314-79.917h-23.767l-20.264 79.699 25.058 27.897c6.361-1.457 12.634-3.146 18.81-5.057z" fill="#e28086" />
+                  <path d="m249.302 511.905c2.075.054 4.154.091 6.241.095 2.415-.004 4.822-.046 7.222-.113l12.907-14.259c-10.159 3.564-20.61 6.506-31.309 8.779z" fill="#dd636e" />
+                  <path d="m298.774 328.183v-45.066h-85.58v45.066c0 23.632 42.79 49.446 42.79 49.446s42.79-25.814 42.79-49.446z" fill="#ffddce" />
+                  <path d="m352.089 180.318h-16.359c-9.098 0-16.473-7.375-16.473-16.473v-9.015c0-11.851-11.595-20.23-22.847-16.511-26.243 8.674-54.579 8.676-80.823.006l-.031-.01c-11.252-3.717-22.845 4.662-22.845 16.512v9.019c0 9.098-7.375 16.473-16.473 16.473h-16.358v26.938c0 6.883 5.58 12.464 12.464 12.464 2.172 0 3.939 1.701 4.076 3.869 2.628 41.668 37.235 74.654 79.565 74.654 42.33 0 76.937-32.986 79.565-74.654.137-2.167 1.904-3.869 4.076-3.869 6.883 0 12.464-5.58 12.464-12.464v-26.939z" fill="#ffddce" />
+                  <path d="m335.73 180.318c-9.098 0-16.473-7.375-16.473-16.473v-9.015c0-11.851-11.595-20.23-22.847-16.511-3.108 1.027-6.247 1.923-9.407 2.707v88.972c-.438 28.948-16.3 54.142-39.725 67.758 2.861.311 5.763.486 8.706.486 42.33 0 76.937-32.986 79.565-74.654.137-2.167 1.904-3.869 4.076-3.869 6.883 0 12.464-5.58 12.464-12.464v-26.938h-16.359z" fill="#ffcbbe" />
+                  <g fill="#f4fbff">
+                    <path d="m213.194 316.06-33.558 27.267 35.192 43.513c4.281 4.168 11.019 4.424 15.605.594l26.465-22.107z" />
+                    <path d="m298.79 316.06-41.892 49.267 24.874 21.268c4.557 3.896 11.327 3.7 15.651-.453l34.94-42.815z" />
+                  </g>
+                  <path d="m213.194 316.06-49.256 24.199c-3.75 1.842-5.256 6.404-3.341 10.117l9.65 18.71c2.501 4.848 1.578 10.756-2.282 14.61-1.987 1.983-4.139 4.131-6.004 5.993-3.338 3.332-4.537 8.255-3.067 12.737 11.651 35.517 67.725 89.828 88.946 109.478 1.427.038 2.857.064 4.29.08-15.389-29.933-69.922-143.655-38.936-195.924z" fill="#365e7d" />
+                  <path d="m344.019 383.695c-3.861-3.854-4.783-9.762-2.282-14.61l9.65-18.71c1.915-3.713.409-8.275-3.341-10.117l-49.256-24.198c30.978 52.255-23.517 165.929-38.923 195.9 1.448-.025 2.893-.061 4.335-.109 21.265-19.695 77.248-73.94 88.888-109.424 1.47-4.482.271-9.405-3.067-12.737-1.865-1.863-4.017-4.012-6.004-5.995z" fill="#365e7d" />
+                  <path d="m256.898 365.327-26.06 21.764 13.278 16.781h23.767l13.279-17.771z" fill="#dd636e" />
+                </svg>
+                [[${user.Name}]]
+              </td>
+              <td class="responsive-table__body__text responsive-table__body__text--status">[[${user.code}]]</td>
+              <td class="responsive-table__body__text responsive-table__body__text--types">[[${user.Loc}]]</td>
+
+              <td>
+<!--                <a th:href="@{codeList/getOne(id=${user.id})}" class="btn btn-primary" id="updateBtn3" >-->
+<!--                  <i class="fa-solid fa-pen-to-square"></i>-->
+<!--                </a>-->
+<!--&lt;!&ndash;                <p>&nbsp &nbsp</p>&ndash;&gt;-->
+<!--                &lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;-->
+<!--                <a  th:href="@{codeList/delete(id=${user.id})}" class="btn btn-danger" id="deleteBtn" >-->
+<!--                  <i class="fa fa-trash-o" aria-hidden="true"></i>-->
+<!--                </a>-->
+                <div class="flex">
+                  <a href="" th:href="@{codeList/getOne(id=${user.id})}" id="updateBtn3" class="bttn3">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </a>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                  <a href="" th:href="@{codeList/delete(id=${user.id})}"  id="deleteBtn" class="bttn">
+                    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                </div>
+
+              </td>
+            </tr>
+          </th:block>
+          </tbody>
+        </table>
+<!--        <table class="table table-bordered">-->
+<!--          <thead class="thead-light">-->
+<!--          <tr>-->
+<!--            <th>Name</th>-->
+<!--            <th>Code</th>-->
+<!--            <th>Loc</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <th:block th:each="user : ${listUsers}">-->
+<!--            <tr>-->
+<!--              <td>[[${user.Name}]]</td>-->
+<!--              <td>[[${user.code}]]</td>-->
+<!--              <td>[[${user.Loc}]]</td>-->
+<!--                              <td>-->
+<!--                                <a th:href="@{codeList/getOne(id=${user.id})}" class="btn btn-primary" id="updateBtn3" >-->
+<!--                                  Edit-->
+<!--                                </a>-->
+<!--                                &lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;-->
+<!--                                <a  th:href="@{codeList/delete(id=${user.id})}" class="btn btn-danger" id="deleteBtn" >-->
+<!--                                  Delete-->
+<!--                                </a>-->
+<!--                              </td>-->
+
+<!--            </tr>-->
+<!--          </th:block>-->
+<!--          </tbody>-->
+<!--        </table>-->
+      </div>
+    </div>
+    </div>
+  </section><!-- End About Section -->
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="upload">
+          <div class="upload-files">
+            <header>
+              <p>
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                <span class="up">up</span>
+                <span class="load">load</span>
+              </p>
+            </header>
+            <div class="body" id="drop">
+              <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
+              <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href="" id="triggerFile">browse</a> to begin the upload</p>
+              <input type="file" name="file" multiple="multiple" form="uploadFile"/>
+            </div>
+            <footer>
+              <div class="divider">
+                <span><AR>FILES</AR></span>
+              </div>
+              <div class="list-files">
+                <!--   template   -->
+              </div>
+              <form th:action="@{/upload/choose}" method="post" enctype="multipart/form-data" id="uploadFile">
+                <!--                        <input type="file" name="file">-->
+                <!--        <input type="date" id="uploadDate" name="date">-->
+              </form>
+              <input  class="importar2" type="date"  id="uploadDate" required name="date" form="uploadFile">
+              <button class="importar" form="uploadFile">UPDATE FILES</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main><!-- End #main -->
+
+
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog modal-confirm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <div class="icon-box">
+          <i class="material-icons">&#xE5CD;</i>
+        </div>
+        <h4 class="modal-title w-100">Are you sure?</h4>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete these records? This process cannot be undone.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a href="" style="color: white; padding: 11px 25px; text-align: center" class="btn btn-danger m-2" id="delRef">Delete</a>
+        <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3><a href=".." class="logo me-auto me-lg-0"><img src="../../assets/img/logo_white.png" alt="" class="img-fluid" style="width:40%"></a>
+            </h3>
+            <p>
+              990 Whitehorse Road <br>
+              Box Hill, VIC 3128, AU<br><br>
+              <strong>Phone:</strong> +61 416572418<br>
+              <strong>Email:</strong> mia.wang@prosperomarkets.com<br>
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Our Service</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="..">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/codeList">Code List</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/attendance">Attendance Sheets</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/users">Customer Database</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/statistics">Statistics</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="https://analytics.gotowebinar.com/">GoTo Webinar</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="https://admin.prosperomarkets.com/">Management Center</a></li>
+
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Gp</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">Hongyu</a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+<!-- ======= Footer ======= -->
+
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/b83f27d12f.js" crossorigin="anonymous"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/modal.js"></script>
+<script src="assets/js/table.js"></script>
+<script src="assets/js/search.js"></script>
+
+<script src="assets/js/uploadBtn.js"></script>
+</body>
+
+<!-- Vertically centered scrollable modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-confirm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <div class="icon-box2">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+        <h5 class="modal-title w-100">Update</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{codeList/update}" method="put" th:object="${user}">
+
+          <input type="hidden" th:field="*{id}" id="idEdit" name="id">
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Name:</label>
+            <div class="col-sm-8">
+              <input type="text" th:field="*{name}" class="form-control" id="nameEdit" name="name" required minlength="2" maxlength="45"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Code:</label>
+            <div class="col-sm-8">
+              <input type="number" th:field="*{code}" class="form-control" id="codeEdit" name="code" required minlength="1" maxlength="10" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Loc:</label>
+            <div class="col-sm-8">
+              <input type="text" th:field="*{loc}" class="form-control" id="locEdit" name="loc" required minlength="1" maxlength="10" />
+            </div>
+          </div>
+
+          <div class="modal-footer justify-content-center">
+            <button type="submit" class="btn btn-primary m-2">Save</button>
+            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-confirm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <div class="icon-box1">
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <h5 class="modal-title w-100">Add New</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{codeList/save}" method="post" th:object="${user}">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Name:</label>
+            <div class="col-sm-8">
+              <input type="text" th:field="*{name}" class="form-control"  required minlength="2" maxlength="45"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Code:</label>
+            <div class="col-sm-8">
+              <input type="number" th:field="*{code}" class="form-control" required minlength="1" maxlength="10" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Loc:</label>
+            <div class="col-sm-8">
+              <input type="text" th:field="*{loc}" class="form-control"  required minlength="2" maxlength="45"/>
+            </div>
+          </div>
+
+          <div class="modal-footer justify-content-center">
+            <button type="submit" class="btn btn-primary m-2">Save</button>
+            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</html>

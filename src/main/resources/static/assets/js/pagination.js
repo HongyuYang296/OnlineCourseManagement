@@ -1,0 +1,416 @@
+
+
+getPagination('#table-id2');
+$('#maxRows').trigger('change');
+function getPagination (table){
+
+    $('#maxRows').on('change',function(){
+        $('.pagination').html('');						// reset pagination div
+        var trnum = 0 ;									// reset tr counter
+        var maxRows = parseInt($(this).val());			// get Max Rows from select option
+
+        var totalRows = $(table+' tbody tr').length;		// numbers of rows
+        $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
+            trnum++;									// Start Counter
+            if (trnum > maxRows ){						// if tr number gt maxRows
+
+                $(this).hide();							// fade it out
+            }if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
+        });											//  was fade out to fade it in
+        if (totalRows > maxRows){						// if tr total rows gt max rows option
+            var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..
+            //	numbers of pages
+            // for (var i = 1; i <= pagenum ;){			// for each page append pagination li
+            //     $('.pagination').append('<li data-page="'+i+'">\
+			// 					      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+			// 					    </li>').show();
+            // }
+
+            if (pagenum < 10) {
+                for (var i = 1; i <= pagenum ;){			// for each page append pagination li
+                    $('.pagination').append('<li data-page="'+i+'">\
+								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+								    </li>').show();
+                }
+            } else {
+                for (var i = 1; i <= 3 ;){			// for each page append pagination li
+                    $('.pagination').append('<li data-page="'+i+'">\
+								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+								    </li>').show();
+                }
+                    var i = "..."
+                    $('.pagination').append('<li data-page="'+i+'">\
+                                      \<span>'+ i +'</span>\
+								    </li>').show();
+                for (var i = pagenum-2; i <= pagenum ;){			// for each page append pagination li
+                    $('.pagination').append('<li data-page="'+i+'">\
+								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+								    </li>').show();
+                }
+            }
+
+
+
+        } 												// end if row count > max rows
+        $('.pagination li:first-child').addClass('active'); // add active class to the first li
+
+
+        //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+        showig_rows_count(maxRows, 1, totalRows);
+        //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+
+        $('.pagination li').on('click',function(e){		// on click each page
+            e.preventDefault();
+            var pageNum = $(this).attr('data-page');	// get it's number
+            var trIndex = 0 ;							// reset tr counter
+            $('.pagination li').removeClass('active');	// remove active class from all li
+            $(this).addClass('active');					// add active class to the clicked
+
+
+            //SHOWING ROWS NUMBER OUT OF TOTAL
+            showig_rows_count(maxRows, pageNum, totalRows);
+            //SHOWING ROWS NUMBER OUT OF TOTAL
+
+
+
+            $(table+' tr:gt(0)').each(function(){		// each tr in table not the header
+                trIndex++;								// tr index counter
+                // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+                if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+                    $(this).hide();
+                }else {$(this).show();} 				//else fade in
+            }); 										// end of for each tr in table
+        });										// end of on click pagination list
+    });
+    // end of on select change
+
+    // END OF PAGINATION
+
+}
+
+
+
+
+    // // SI SETTING
+    // $(function(){
+    //     // Just to append id number for each row
+    //     default_index();
+    //
+    // });
+
+//ROWS SHOWING FUNCTION
+function showig_rows_count(maxRows, pageNum, totalRows) {
+    //Default rows showing
+    var end_index = maxRows*pageNum;
+    var start_index = ((maxRows*pageNum)- maxRows) + parseFloat(1);
+    var string = 'Showing '+ start_index + ' to ' + end_index +' of ' + totalRows + ' entries';
+    $('.rows_count').html(string);
+}
+
+// // CREATING INDEX
+// function default_index() {
+//     $('table tr:eq(0)').prepend('<th> ID </th>')
+//
+//     var id = 0;
+//
+//     $('table tr:gt(0)').each(function(){
+//         id++
+//         $(this).prepend('<td>'+id+'</td>');
+//     });
+// }
+
+// All Table search script
+function FilterkeyWord_all_table() {
+
+// Count td if you want to search on all table instead of specific column
+
+    var count = $('.responsive-table').children('tbody').children('tr:first-child').children('td').length;
+
+    // Declare variables
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("search_input_all");
+    var input_value = document.getElementById("search_input_all").value;
+    filter = input.value.toLowerCase();
+    console.log(input_value);
+    if(input_value !=''){
+        table = document.getElementById("table-id2");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 1; i < tr.length; i++) {
+
+            var flag = 0;
+
+            for(j = 0; j < count; j++){
+                td = tr[i].getElementsByTagName("td")[j];
+                if (td) {
+                    var td_text = td.innerHTML;
+                    if (td.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                        //var td_text = td.innerHTML;
+                        //td.innerHTML = 'shaban';
+                        flag = 1;
+                    } else {
+                        //DO NOTHING
+                    }
+                }
+            }
+            if(flag==1){
+                tr[i].style.display = "";
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    }else {
+        //RESET TABLE
+        $('#maxRows').trigger('change');
+    }
+}
+
+
+
+function FilterkeyCode_all_table() {
+    var count = $('.responsive-table').children('tbody').children('tr:first-child').children('td').length;
+    // Declare variables
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("searchCode");
+    var input_value = document.getElementById("searchCode").value;
+    filter = input.value.toLowerCase();
+    console.log(input_value);
+    if(input_value !=='' && input_value !=='all'){
+        table = document.getElementById("table-id2");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 1; i < tr.length; i++) {
+            var flag = 0;
+            for(j = 0; j < count; j++){
+                td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    var td_text = td.innerHTML;
+                    var filters = "^" +filter+ "$"
+                    console.log(filters)
+                    if (td.innerHTML.toLowerCase().match(filters)) {
+                        //var td_text = td.innerHTML;
+                        //td.innerHTML = 'shaban';
+                        flag = 1;
+                    } else {
+                        //DO NOTHING
+                    }
+                }
+            }
+            if(flag==1){
+                tr[i].style.display = "";
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    }else if (input_value ==='all') {
+        table = document.getElementById("table-id2");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            var flag = 0;
+            for(j = 0; j < count; j++){
+                td = tr[i].getElementsByTagName("td")[4];
+                    flag = 1;
+            }
+            if(flag==1){
+                tr[i].style.display = "";
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    } else {
+        //RESET TABLE
+        $('#maxRows').trigger('change');
+    }
+
+}
+
+
+function FilterkeyGroup_all_table() {
+    var count = $('.responsive-table').children('tbody').children('tr:first-child').children('td').length;
+    // Declare variables
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("searchCode");
+    var input_value = document.getElementById("searchGroup").value;
+    filter = input.value.toLowerCase();
+    console.log(input_value);
+    if(input_value !=='' && input_value !=='all'){
+        table = document.getElementById("table-id2");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        // if (input_value === "Emily"){
+        //     search(3331,3332,3334,333)
+        //     console.log("emily success")
+        // }
+        switch (input_value) {
+            case "Emily":
+                search2(3331,3332,3334,3335,333)
+                console.log("emily changed success")
+                break;
+            case "Jackson":
+                search(444, 444222, 444444, 444555)
+                console.log("Jackson success")
+                break;
+            case "Sheldon":
+                search(666, 777, 777111, 777222)
+                console.log("Sheldon success")
+                break;
+            case "Sydney":
+                search2(111111,222222, 333333, 555555, 888888)
+                console.log("Sydney success")
+                break;
+            case "Mel Sales":
+                search3(333,3331,3332,3334,3335,444,444222,444444,444555,666,777,777222, 0o00001, 0o00002)
+                console.log("Mel sales success")
+                break;
+        }
+    }else if (input_value ==='all') {
+        table = document.getElementById("table-id2");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            var flag = 0;
+            for(j = 0; j < count; j++){
+                td = tr[i].getElementsByTagName("td")[4];
+                flag = 1;
+            }
+            if(flag==1){
+                tr[i].style.display = "";
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    } else {
+        //RESET TABLE
+        $('#maxRows').trigger('change');
+    }
+}
+
+function search(code1,code2,code3,code4){
+    var input, filter, table, tr, td, i;
+    var filter1 = "^" +code1+ "$"
+    var filter2 = "^" +code2+ "$"
+    var filter3 = "^" +code3+ "$"
+    var filter4 = "^" +code4+ "$"
+    table = document.getElementById("table-id2");
+    tr = table.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+        var flag = 0;
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+            if (td.innerHTML.match(filter1) || td.innerHTML.match(filter2) || td.innerHTML.match(filter3) || td.innerHTML.match(filter4) ) {
+                //var td_text = td.innerHTML;
+                //td.innerHTML = 'shaban';
+                flag = 1;
+            } else {
+                //DO NOTHING
+            }
+        }
+
+        if(flag==1){
+            tr[i].style.display = "";
+        }else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+
+function search2(code1,code2,code3,code4,code5){
+    var input, filter, table, tr, td, i;
+    var filter1 = "^" +code1+ "$"
+    var filter2 = "^" +code2+ "$"
+    var filter3 = "^" +code3+ "$"
+    var filter4 = "^" +code4+ "$"
+    var filter5 = "^" +code5+ "$"
+    table = document.getElementById("table-id2");
+    tr = table.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+        var flag = 0;
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+            if (td.innerHTML.match(filter1) || td.innerHTML.match(filter2) || td.innerHTML.match(filter3) || td.innerHTML.match(filter4) || td.innerHTML.match(filter5) ) {
+                //var td_text = td.innerHTML;
+                //td.innerHTML = 'shaban';
+                flag = 1;
+            } else {
+                //DO NOTHING
+            }
+        }
+        if(flag==1){
+            tr[i].style.display = "";
+        }else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+
+function search3(code1,code2,code3,code4,code5,code6,code7,code8,code9,code10,code11,code12,code13,code14){
+    var input, filter, table, tr, td, i;
+    var filter1 = "^" +code1+ "$"
+    var filter2 = "^" +code2+ "$"
+    var filter3 = "^" +code3+ "$"
+    var filter4 = "^" +code4+ "$"
+    var filter5 = "^" +code5+ "$"
+    var filter6 = "^" +code6+ "$"
+    var filter7 = "^" +code7+ "$"
+    var filter8 = "^" +code8+ "$"
+    var filter9 = "^" +code9+ "$"
+    var filter10 = "^" +code10+ "$"
+    var filter11 = "^" +code11+ "$"
+    var filter12 = "^" +code12+ "$"
+    var filter13 = "^" +code13+ "$"
+    var filter14 = "^" +code14+ "$"
+
+    table = document.getElementById("table-id2");
+    tr = table.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+        var flag = 0;
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+            if (td.innerHTML.match(filter1) ||
+                td.innerHTML.match(filter2) ||
+                td.innerHTML.match(filter3) ||
+                td.innerHTML.match(filter4) ||
+                td.innerHTML.match(filter5) ||
+                td.innerHTML.match(filter6) ||
+                td.innerHTML.match(filter7) ||
+                td.innerHTML.match(filter8) ||
+                td.innerHTML.match(filter9) ||
+                td.innerHTML.match(filter10) ||
+                td.innerHTML.match(filter11) ||
+                td.innerHTML.match(filter12) ||
+                td.innerHTML.match(filter13) ||
+                td.innerHTML.match(filter14) ) {
+                //var td_text = td.innerHTML;
+                //td.innerHTML = 'shaban';
+                flag = 1;
+            } else {
+                //DO NOTHING
+            }
+        }
+        if(flag==1){
+            tr[i].style.display = "";
+        }else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    const selectMenuExists = () => window.HTMLSelectMenuElement != null;
+    if (selectMenuExists() === true) {
+        document.querySelectorAll("select").forEach((e) => {
+            let target = document.createElement("selectmenu");
+            e.parentNode.replaceChild(
+                Object.assign(target, {
+                    innerHTML: e.innerHTML
+                }),
+                e
+            );
+            [...e.attributes].forEach((attr) => {
+                target.setAttribute(attr.nodeName, attr.nodeValue);
+            });
+        });
+    }
+});

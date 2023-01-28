@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="../assets/"
+        data-template="vertical-menu-template-free"
+        xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+>
+
+<head>
+  <meta charset="utf-8" />
+  <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+  />
+
+  <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+
+  <meta name="description" content="" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../assets/img/logo2.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet"
+  />
+
+  <!-- Icons. Uncomment required icon fonts -->
+  <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="../assets/css/demo.css" />
+
+  <!-- Vendors CSS -->
+  <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+  <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+
+  <!-- Page CSS -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/deleteModal.css" rel="stylesheet">
+  <link href="assets/css/statistics.css" rel="stylesheet">
+  <link href="assets/css/search.css" rel="stylesheet">
+  <link href="assets/css/button.css" rel="stylesheet">
+  <link href="assets/css/uploadBtn.css" rel="stylesheet">
+
+  <!-- Helpers -->
+  <script src="../assets/vendor/js/helpers.js"></script>
+
+  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+  <script src="../assets/js/config.js"></script>
+</head>
+
+<script src="../assets/vendor/js/helpers.js"></script>
+
+<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+<script src="../assets/js/config.js"></script>
+
+
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center justify-content-lg-between">
+
+    <!--        <h1 class="logo me-auto me-lg-0"><a href="..">Gpp<span>.</span></a></h1>-->
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <a href=".." class="logo me-auto me-lg-0"><img src="assets/img/logo_white.png" alt="" class="img-fluid" style="width:70%"></a>
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a class="nav-link scrollto" href="..">Home</a></li>
+        <li><a class="nav-link scrollto" href="/codeList">CodeList</a></li>
+        <li><a class="nav-link scrollto" href="/attendance">Attendance</a></li>
+        <li><a class="nav-link scrollto " href=/users>Database</a></li>
+        <li><a class="nav-link scrollto active" href=/statistics>Statistics</a></li>
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+    <a href="" class="get-started-btn" onclick="runApp()" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload</a>
+  </div>
+</header><!-- End Header -->
+<body>
+<!-- Layout wrapper -->
+<h2 style="text-align: center; margin-top: 12vh; color: whitesmoke;">欧盘解盘分析</h2>
+<h5 id="dates2" style="text-align: center; color: whitesmoke;">
+  <th:block th:text="${date}">
+  </th:block>
+</h5>
+
+<div class="layout-wrapper layout-content-navbar">
+  <!-- Content wrapper -->
+  <div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <div class="row">
+        <div class="col-lg-8 mb-4 order-0">
+          <div class="card">
+            <div class="d-flex align-items-end row">
+              <div class="col-sm-7">
+                <div class="card-body">
+
+                  <h5 style="color: black; text-align: center;">Select Date and Type</h5>
+                  <div class="row">
+                    <div class="col-md-6">
+
+                      <form th:action="@{statistics_euro}" method="get" onsubmit='dosearch();return false;'>
+                        <ul class="nav nav-pills" role="tablist">
+                          <li class="nav-item">
+                            <input onchange="saveCookie()" style="width: 115px; height: 40px" type="date" class="date" id="searchDate" name="searchDate" placeholder="select date">
+                          </li>
+                          <li class="nav-item">
+                            &nbsp;
+                          </li>
+                          <li class="nav-item">
+                            <button
+                                    type="submit"
+                                    class="nav-link active"
+                                    style="background-color: #F7A814;"
+                                    role="tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#navs-tabs-line-card-income"
+                                    aria-controls="navs-tabs-line-card-income"
+                                    aria-selected="true"
+                            >
+                              Search
+                            </button>
+                          </li>
+                        </ul>
+                        <!--                        <button style="height: 40px" class="button1" type="submit">search</button>-->
+                      </form>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <a href="statistics_us">
+                            <img src="https://cdn-icons-png.flaticon.com/512/478/478075.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/478/478024.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/478/478075.png'"  style="width: 75%; max-width: 60px"/>
+                          </a>
+                          <p style="font-size: 14px;  padding-top: 5px; margin-left: -6px">美盘解盘</p>
+                        </div>
+                        <div class="col-md-4">
+                          <a href="/statistics_euro">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2963/2963292.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963263.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963292.png'" style="width: 75%; max-width: 60px"/>
+                          </a>
+                          <p style="font-size: 14px; text-align: center; padding-top: 5px; margin-left: -6px;">欧盘解盘</p>
+                        </div>
+                        <div class="col-md-4">
+
+                          <a href="/statistics">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2601/2601491.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601466.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601491.png'" style="width: 75%; max-width: 60px"/>
+                          </a>
+                          <p style="font-size: 14px; text-align: center; padding-top: 5px; margin-left: -6px;">常规网课</p>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-sm-5 text-center text-sm-left">
+                <div class="card-body pb-0 px-0 px-md-4">
+                  <img
+                          src="../assets/img/illustrations/man-with-laptop-light.png"
+                          height="140"
+                          alt="View Badge User"
+                          data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                          data-app-light-img="illustrations/man-with-laptop-light.png"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 order-1">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 col-6 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img
+                              src="https://cdn-icons-png.flaticon.com/512/5110/5110785.png"
+                              alt="chart success"
+                              class="rounded"
+                      />
+                    </div>
+                  </div>
+                  <span class="fw-semibold d-block mb-1">Total</span>
+                  <h3 class="card-title text-nowrap mb-1">
+                    <th:block th:text="${total}"class="card-title mb-2">
+                      <h3 style="font-size: 30px">text</h3>
+                    </th:block>
+                  </h3>
+<!--                  <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +xx%</small>-->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-6 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img
+                              src="https://cdn-icons-png.flaticon.com/512/1410/1410743.png"
+                              alt="Credit Card"
+                              class="rounded"
+                      />
+                    </div>
+
+                  </div>
+                  <span>Melbourne</span>
+                  <h3 class="card-title text-nowrap mb-1">
+                    <th:block th:text="${totalMel}"class="card-title mb-2">
+                      <h3 style="font-size: 30px">text</h3>
+                    </th:block>
+                  </h3>
+<!--                  <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +xx%</small>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Total Revenue -->
+        <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+          <div class="card">
+            <div class="row row-bordered g-0">
+              <div class="col-md-8">
+                <h5 class="card-header m-0 me-2 pb-3">Customer analyse (Demo)</h5>
+                <div id="totalRevenueChart" class="px-2"></div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-body">
+                  <div class="text-center">
+                    <div class="dropdown">
+                      <button
+                              class="btn btn-sm btn-outline-primary dropdown-toggle"
+                              type="button"
+                              id="growthReportId"
+                              data-bs-toggle="dropdown"
+                              style="border-color: #F7A814; color: #F7A814"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                      >
+                        2022
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                        <a class="dropdown-item" href="javascript:void(0);">2021</a>
+                        <a class="dropdown-item" href="javascript:void(0);">2020</a>
+                        <a class="dropdown-item" href="javascript:void(0);">2019</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="growthChart" style="border-color: #F7A814"></div>
+                <div class="text-center fw-semibold pt-3 mb-2">XX% Customer Growth</div>
+
+                <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                  <div class="d-flex">
+                    <div class="me-2">
+                      <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <small>2022</small>
+                      <h6 class="mb-0">xxx</h6>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div class="me-2">
+                      <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <small>2021</small>
+                      <h6 class="mb-0">xxx</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Total Revenue -->
+        <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+          <div class="row">
+            <div class="col-6 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img src="https://cdn-icons-png.flaticon.com/512/3754/3754625.png" alt="Credit Card" class="rounded" />
+                    </div>
+
+                  </div>
+                  <span class="d-block mb-1">Sydney</span>
+                  <h3 class="card-title text-nowrap mb-2">
+                    <th:block th:text="${totalSyd}"class="card-title mb-2">
+                      <h3 style="font-size: 30px">text</h3>
+                    </th:block>
+                  </h3>
+<!--                  <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -xx%</small>-->
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img src="https://cdn-icons-png.flaticon.com/512/1321/1321729.png" alt="Credit Card" class="rounded" />
+                    </div>
+                    <div class="dropdown">
+                      <button
+                              class="btn p-0"
+                              type="button"
+                              id="cardOpt1"
+                              data-bs-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                      >
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                        <a class="dropdown-item" href="/attendance/searchError">View Details</a>
+
+                      </div>
+                    </div>
+                  </div>
+                  <span class="fw-semibold d-block mb-1">Unknown</span>
+                  <h3 class="card-title mb-2">
+                    <th:block th:text="${unknown}"class="card-title mb-2">
+                      <h3 style="font-size: 30px">text</h3>
+                    </th:block>
+                  </h3>
+<!--                  <small class="text-success fw-semibold">&nbsp;</small>-->
+                </div>
+              </div>
+            </div>
+            <!-- </div>
+<div class="row"> -->
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Order Statistics -->
+        <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center justify-content-between pb-0">
+              <div class="card-title mb-0">
+                <h5 class="m-0 me-2">Class Statistics (Demo)</h5>
+                <small class="text-muted">听课时长分析</small>
+              </div>
+              <div class="dropdown">
+                <button
+                        class="btn p-0"
+                        type="button"
+                        id="orederStatistics"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                >
+                  <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                  <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                  <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                  <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex flex-column align-items-center gap-1">
+                  <h2 class="mb-2">
+                    <th:block th:text="${total}"class="card-title mb-2">
+                      <h3 style="font-size: 30px">text</h3>
+                    </th:block>
+                  </h2>
+                  <span>Total Customers</span>
+                </div>
+                <div id="orderStatisticsChart"></div>
+              </div>
+              <ul class="p-0 m-0">
+                <li class="d-flex mb-4 pb-1">
+                  <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-primary"
+                            ><i class="bx bx-mobile-alt"></i
+                            ></span>
+                  </div>
+                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="me-2">
+                      <h6 class="mb-0">忠实客户</h6>
+                      <small class="text-muted">听课时长 more than 1h</small>
+                    </div>
+                    <div class="user-progress">
+                      <small class="fw-semibold">xx</small>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                  <div class="avatar flex-shrink-0 me-3">
+                    <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
+                  </div>
+                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="me-2">
+                      <h6 class="mb-0">普通客户</h6>
+                      <small class="text-muted">听课时长 0.5h ~ 1h</small>
+                    </div>
+                    <div class="user-progress">
+                      <small class="fw-semibold">xx</small>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                  <div class="avatar flex-shrink-0 me-3">
+                    <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
+                  </div>
+                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="me-2">
+                      <h6 class="mb-0">参与</h6>
+                      <small class="text-muted">听课时长 less than 0.5h</small>
+                    </div>
+                    <div class="user-progress">
+                      <small class="fw-semibold">xx</small>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex">
+                  <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-secondary"
+                            ><i class="bx bx-football"></i
+                            ></span>
+                  </div>
+                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="me-2">
+                      <h6 class="mb-0">路过</h6>
+                      <small class="text-muted">听课时长 less than 5 mins</small>
+                    </div>
+                    <div class="user-progress">
+                      <small class="fw-semibold">99</small>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--/ Order Statistics -->
+
+        <!-- Expense Overview -->
+        <div class="col-md-6 col-lg-4 order-1 mb-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                  <button
+                          type="button"
+                          class="nav-link active"
+                          role="tab"
+                          style="background-color: #F7A814"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-tabs-line-card-income"
+                          aria-controls="navs-tabs-line-card-income"
+                          aria-selected="true"
+                  >
+                    Tab1
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button type="button" class="nav-link" role="tab">Tab2</button>
+                </li>
+                <li class="nav-item">
+                  <button type="button" class="nav-link" role="tab">Tab3</button>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body px-0">
+              <div class="tab-content p-0">
+                <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+                  <div class="d-flex p-4 pt-3">
+                    <div class="avatar flex-shrink-0 me-3">
+                      <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">其他分析</small>
+                      <div class="d-flex align-items-center">
+                        <h6 class="mb-0 me-1">xxx</h6>
+                        <small class="text-success fw-semibold">
+                          <i class="bx bx-chevron-up"></i>
+                          xx%
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="incomeChart"></div>
+                  <div class="d-flex justify-content-center pt-4 gap-2">
+                    <div class="flex-shrink-0">
+                      <div id="expensesOfWeek"></div>
+                    </div>
+                    <div>
+                      <p class="mb-n1 mt-1">Expenses This Week</p>
+                      <small class="text-muted">$xxx less than last week</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Expense Overview -->
+
+        <!-- Transactions -->
+        <div class="col-md-6 col-lg-4 order-2 mb-4" style="padding-top: -200px; margin-top: -200px">
+          <div id="screenShot">
+            <div class="card h-100">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="card-title m-0 me-2">Attendance Rank</h5>
+                <img src="https://cdn-icons-png.flaticon.com/512/2963/2963292.png" style="width: 35px">
+                <div id="dates" style="text-align: center; font-size: 18px; color: rgba(67, 89, 113, 0.6)">
+                  <th:block th:text="${date}">
+                  </th:block>
+                </div>
+
+                <div class="dropdown">
+                  <button
+                          class="btn p-0"
+                          type="button"
+                          id="transactionID"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                  >
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
+                    <button class="dropdown-item" href="" onclick="capture()">ScreenShot &nbsp;<i class="fa fa-camera" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card-body" style="overflow-y: scroll; height:600px;font-size: 14px;">
+                <table class="responsive-table" style="margin: 0;">
+                  <!-- Responsive Table Body Section -->
+                  <tbody class="responsive-table__body" style="margin: 0;" >
+                  <th:block th:each="user : ${listUsers}">
+                    <tr class="responsive-table__row">
+                      <td class="responsive-table__body__text responsive-table__body__text--name">
+                        <svg class="user-icon" enable-background="new 0 0 512 512"  height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg" style="width: 50%">
+                          <path d="m256.025 483.334 101.429-25.614c57.895-48.074 94.771-120.586 94.771-201.719 0-125.144-87.711-229.801-205.012-255.852-137.316 4.631-247.213 117.407-247.213 255.851 0 71.112 29 135.446 75.812 181.836z" fill="#cbe2ff" />
+                          <path d="m446.914 256c0 83.915-40.381 158.391-102.765 205.079l92.031-23.241c46.815-46.39 75.82-110.724 75.82-181.838 0-141.385-114.615-256-256-256-11.024 0-21.886.698-32.543 2.05 126.019 15.988 223.457 123.59 223.457 253.95z" fill="#bed8fb" />
+                          <path d="m319.621 96.952c0-13.075-10.599-23.674-23.674-23.674h-81.582c-30.091 0-54.485 24.394-54.485 54.485v60.493h192.209v-59.635c0-13.075-10.599-23.674-23.674-23.674h-.798c-4.416 0-7.996-3.579-7.996-7.995z" fill="#365e7d" />
+                          <path d="m328.415 104.947h-.798c-4.416 0-7.996-3.58-7.996-7.996 0-13.075-10.599-23.674-23.674-23.674h-8.945v114.978h65.086v-59.635c.001-13.073-10.599-23.673-23.673-23.673z" fill="#2b4d66" />
+                          <path d="m425.045 372.355c-6.259-6.182-14.001-10.963-22.79-13.745l-69.891-22.128-76.348-2.683-76.38 2.683-69.891 22.128c-23.644 7.486-39.713 29.428-39.713 54.229v19.094c44.789 47.328 107.451 77.568 177.183 79.92 78.128-17.353 143.129-69.576 177.83-139.498z" fill="#4a80aa" />
+                          <path d="m441.968 431.932v-19.094c0-17.536-8.04-33.635-21.105-44.213-37.111 75.626-110.422 130.268-197.346 141.317 10.492 1.329 21.178 2.038 32.026 2.057 10.423-.016 20.708-.62 30.824-1.782 61.031-7.212 115.485-35.894 155.601-78.285z" fill="#407093" />
+                          <path d="m261.796 508.168c15.489-30.751 55.822-118.067 44.321-172.609l-50.101-19.499-50.148 19.5c-11.856 56.225 31.37 147.277 45.681 175.29 3.442-.826 6.859-1.721 10.247-2.682z" fill="#e4f6ff" />
+                          <path d="m288.197 483.789-20.314-79.917h-23.767l-20.264 79.699 25.058 27.897c6.361-1.457 12.634-3.146 18.81-5.057z" fill="#e28086" />
+                          <path d="m249.302 511.905c2.075.054 4.154.091 6.241.095 2.415-.004 4.822-.046 7.222-.113l12.907-14.259c-10.159 3.564-20.61 6.506-31.309 8.779z" fill="#dd636e" />
+                          <path d="m298.774 328.183v-45.066h-85.58v45.066c0 23.632 42.79 49.446 42.79 49.446s42.79-25.814 42.79-49.446z" fill="#ffddce" />
+                          <path d="m352.089 180.318h-16.359c-9.098 0-16.473-7.375-16.473-16.473v-9.015c0-11.851-11.595-20.23-22.847-16.511-26.243 8.674-54.579 8.676-80.823.006l-.031-.01c-11.252-3.717-22.845 4.662-22.845 16.512v9.019c0 9.098-7.375 16.473-16.473 16.473h-16.358v26.938c0 6.883 5.58 12.464 12.464 12.464 2.172 0 3.939 1.701 4.076 3.869 2.628 41.668 37.235 74.654 79.565 74.654 42.33 0 76.937-32.986 79.565-74.654.137-2.167 1.904-3.869 4.076-3.869 6.883 0 12.464-5.58 12.464-12.464v-26.939z" fill="#ffddce" />
+                          <path d="m335.73 180.318c-9.098 0-16.473-7.375-16.473-16.473v-9.015c0-11.851-11.595-20.23-22.847-16.511-3.108 1.027-6.247 1.923-9.407 2.707v88.972c-.438 28.948-16.3 54.142-39.725 67.758 2.861.311 5.763.486 8.706.486 42.33 0 76.937-32.986 79.565-74.654.137-2.167 1.904-3.869 4.076-3.869 6.883 0 12.464-5.58 12.464-12.464v-26.938h-16.359z" fill="#ffcbbe" />
+                          <g fill="#f4fbff">
+                            <path d="m213.194 316.06-33.558 27.267 35.192 43.513c4.281 4.168 11.019 4.424 15.605.594l26.465-22.107z" />
+                            <path d="m298.79 316.06-41.892 49.267 24.874 21.268c4.557 3.896 11.327 3.7 15.651-.453l34.94-42.815z" />
+                          </g>
+                          <path d="m213.194 316.06-49.256 24.199c-3.75 1.842-5.256 6.404-3.341 10.117l9.65 18.71c2.501 4.848 1.578 10.756-2.282 14.61-1.987 1.983-4.139 4.131-6.004 5.993-3.338 3.332-4.537 8.255-3.067 12.737 11.651 35.517 67.725 89.828 88.946 109.478 1.427.038 2.857.064 4.29.08-15.389-29.933-69.922-143.655-38.936-195.924z" fill="#365e7d" />
+                          <path d="m344.019 383.695c-3.861-3.854-4.783-9.762-2.282-14.61l9.65-18.71c1.915-3.713.409-8.275-3.341-10.117l-49.256-24.198c30.978 52.255-23.517 165.929-38.923 195.9 1.448-.025 2.893-.061 4.335-.109 21.265-19.695 77.248-73.94 88.888-109.424 1.47-4.482.271-9.405-3.067-12.737-1.865-1.863-4.017-4.012-6.004-5.995z" fill="#365e7d" />
+                          <path d="m256.898 365.327-26.06 21.764 13.278 16.781h23.767l13.279-17.771z" fill="#dd636e" />
+                        </svg>
+                        [[${user.name}]]
+                      </td>
+                      <td class="total" style="padding-top: 17.5%">[[${user.sum}]]</td>
+                    </tr>
+                  </th:block>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Transactions -->
+      </div>
+    </div>
+    <!-- / Content -->
+
+    <div class="content-backdrop fade"></div>
+  </div>
+  <!-- Content wrapper -->
+
+  <!-- Overlay -->
+  <div class="layout-overlay layout-menu-toggle"></div>
+</div>
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3><a href=".." class="logo me-auto me-lg-0"><img src="../../assets/img/logo_white.png" alt="" class="img-fluid" style="width:40%"></a>
+            </h3>
+            <p>
+              990 Whitehorse Road <br>
+              Box Hill, VIC 3128, AU<br><br>
+              <strong>Phone:</strong> +61 416572418<br>
+              <strong>Email:</strong> mia.wang@prosperomarkets.com<br>
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Our Service</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="..">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/codeList">Code List</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/attendance">Attendance Sheets</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/users">Customer Database</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/statistics">Statistics</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="https://analytics.gotowebinar.com/">GoTo Webinar</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="https://admin.prosperomarkets.com/">Management Center</a></li>
+
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Gp</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">Hongyu</a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+<!-- / Layout wrapper -->
+
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
+
+
+<script src="../assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+<script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+<!-- Main JS -->
+<script src="../assets/js/main2.js"></script>
+
+<!-- Page JS -->
+<script src="../assets/js/dashboards-analytics.js"></script>
+
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/modal.js"></script>
+<script src="assets/js/table.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/datepicker.js"></script>
+<script src="assets/js/uploadBtn.js"></script>
+<script src="assets/js/screenshot.js"></script>
+
+
+
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
