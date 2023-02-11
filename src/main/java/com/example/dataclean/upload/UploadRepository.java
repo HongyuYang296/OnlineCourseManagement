@@ -75,6 +75,14 @@ public interface UploadRepository extends CrudRepository<Attendance, Integer> {
             nativeQuery = true)
     public List<String> searchCodes();
 
+    @Modifying
+    @Transactional
+    @Query (value = "delete from attendance \n" +
+            "where date = (?1)",
+            nativeQuery = true)
+
+    public void deleteByDate(String keyword);
+
 
 
 }

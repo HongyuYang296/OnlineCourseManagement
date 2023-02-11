@@ -122,6 +122,22 @@ public interface StatisticRepo extends CrudRepository<Statistic, Integer> {
             nativeQuery = true)
     List<Object[]> getAttendanceResult();
 
+    @Query(value = "select date, sum(sum) as total from statistic \n" +
+            "where type = 'attendance_euro'\n" +
+            "group by date\n" +
+            "order by date;",
+            nativeQuery = true)
+    List<Object[]> getAttendanceResultEu();
+
+
+    @Query(value = "select date, sum(sum) as total from statistic \n" +
+            "where type = 'attendance_us'\n" +
+            "group by date\n" +
+            "order by date;",
+            nativeQuery = true)
+    List<Object[]> getAttendanceResultUs();
+
+
 
     @Query(value = "select date, sum(sum) as total from statistic \n" +
             "where name = (?1) and type = 'attendance'\n" +
@@ -137,6 +153,19 @@ public interface StatisticRepo extends CrudRepository<Statistic, Integer> {
             "order by date, name;",
             nativeQuery = true)
     List<Object[]> getNameResult();
+
+    @Query(value = "select date, name, sum(sum) as total from statistic\n" +
+            "where type = 'attendance_euro'\n" +
+            "group by date, name\n" +
+            "order by date, name;",
+            nativeQuery = true)
+    List<Object[]> getNameResultEu();
+    @Query(value = "select date, name, sum(sum) as total from statistic\n" +
+            "where type = 'attendance_us'\n" +
+            "group by date, name\n" +
+            "order by date, name;",
+            nativeQuery = true)
+    List<Object[]> getNameResultUs();
 
 
 

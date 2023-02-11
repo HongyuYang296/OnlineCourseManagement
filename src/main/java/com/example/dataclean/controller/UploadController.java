@@ -9,6 +9,7 @@ import com.example.dataclean.user.UserNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -132,10 +133,22 @@ public String showAttendanceList(@Param("searchDate") String searchDate,Model mo
         }
         else  {
             List<Attendance> listUsers = service.searchAll(searchDate);
+            model.addAttribute("records", new Attendance());
             model.addAttribute("date", searchDate);
             model.addAttribute("listUsers", listUsers);
         }
         return "attendance_total";
+    }
+
+    @RequestMapping("/{deleteDate}/delete")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String delete(RedirectAttributes redirectAttributes, @PathVariable String deleteDate) {
+        redirectAttributes.addFlashAttribute("css", "Success");
+        redirectAttributes.addFlashAttribute("msg", "The user is deleted");
+        service.deleteByDate(deleteDate);
+
+        System.out.print("successfully delete "+ deleteDate);
+        return "redirect:/attendance_total";
     }
 
 

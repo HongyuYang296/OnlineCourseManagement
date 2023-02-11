@@ -8,6 +8,7 @@ function saveCookie() {
     setCookie("inputDate", last_value , 1);
     let inputDate = getCookie("inputDate");
     console.log("cookie: " + inputDate);
+
 }
 
 function myFunction() {
@@ -22,10 +23,22 @@ function myFunction() {
         console.log("inputDate is: " + inputDate);
         document.getElementById('searchDate').valueAsDate = new Date(inputDate);
         document.getElementById('dates').innerText = inputDate;
-        document.getElementById('dates2').innerText = inputDate;
+        // document.getElementById('dates2').innerText = inputDate;
+        var newURL_euro = "attendance_euro?searchDate=" + inputDate;
+        var newURL_us = "attendance_us?searchDate=" + inputDate;
+        var newURL_total = "attendance_total?searchDate=" + inputDate;
+        var newURL = "attendance?searchDate=" + inputDate;
+        document.getElementById("attendance").href = newURL;
+        document.getElementById("attendance_euro").href = newURL_euro;
+        document.getElementById("attendance_us").href = newURL_us;
+        document.getElementById("attendance_total").href = newURL_total;
+
     }
 
 }
+
+
+
 //
 //     // const today = document.getElementById("dates").innerText;
 //     // document.getElementById('searchDate').valueAsDate = new Date(today);
@@ -52,6 +65,8 @@ function getCookie(cname) {
     }
     return "";
 }
+
+
 
 
 
@@ -111,6 +126,8 @@ function getCookie(cname) {
     //     document.getElementById('searchDate').valueAsDate = new Date(today);
     // }
 //}
+
+
 
 
 

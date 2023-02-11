@@ -24,22 +24,28 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
 
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/deleteModal.css" rel="stylesheet">
+  <link href="assets/css/editButton.css" rel="stylesheet">
   <link href="assets/css/attendanceTable.css" rel="stylesheet">
   <link href="assets/css/pagination.css" rel="stylesheet">
+  <link href="assets/css/uploadBtn.css" rel="stylesheet">
+
+  <link href="assets/css/userTable.css" rel="stylesheet">
+
+  <link href="assets/css/deleteBtn.css" rel="stylesheet">
+
 
 
   <!-- =======================================================
@@ -73,9 +79,11 @@
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
-    <a href="#about" class="get-started-btn scrollto">Get Started</a>
+
+    <a href="" class="get-started-btn" onclick="runApp()" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload</a>
   </div>
 </header><!-- End Header -->
+
 
 <!--hero section-->
 <section id="hero" style="height:460px; display:block;" class="d-flex flex-column justify-content-center align-items-center">
@@ -104,16 +112,16 @@
       <div style="text-align: center">
         <div class="row" style="padding-top: 8%; padding-left: 5%; ">
           <div style="width: fit-content; text-align: right" class="col-lg-6">
-            <form th:action="@{attendance_total}" method="get">
-              <input onchange="saveCookie()" style="width: 105px; height: 34px" type="date" class="date" id="searchDate" name="searchDate" placeholder="select date">
-              <button style="height: 40px" class="button1" type="submit">search</button>
+            <form th:action="@{attendance_total}" method="get" name="search_date">
+              <input onchange="saveCookie()" style="width: 105px; font-size: 13px; height: 34px" type="date" class="date" id="searchDate" name="searchDate" placeholder="select date">
+              <button style="height: 40px; font-size: 13px;"  class="button1" type="submit">Search</button>
             </form>
           </div>
 
           <div style="width: fit-content; text-align: left;" class="col-lg-3">
             <form
                     th:action="@{attendance/searchError/result}" method="get">
-              <button style="height: 40px; width: 110px" class="button1" type="submit">Search Error </button>
+              <button style="height: 40px; width: 110px; font-size: 13px" class="button1" type="submit">Search Error </button>
             </form>
           </div>
           <div class="col-md-1">
@@ -130,30 +138,30 @@
     </div>
     <br>
 
-    <div class="row" style="width: 40%; margin-left:30%;">
+    <div class="row" style="width: 45%; margin-left:26.5%; margin-top: 1%">
       <div class="col-md-3">
-        <a href="attendance_us">
+        <a href="attendance_us" id="attendance_us">
           <img src="https://cdn-icons-png.flaticon.com/512/478/478075.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/478/478024.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/478/478075.png'"  style="width: 45%"/>
         </a>
-        <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 18px">美盘解盘</h4>
+        <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 15px">美盘解盘</h4>
       </div>
       <div class="col-md-3" style="font-family:'Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial,'Lucida Grande',sans-serif;">
-        <a href="/attendance_euro">
+        <a href="/attendance_euro" id="attendance_euro">
           <img src="https://cdn-icons-png.flaticon.com/512/2963/2963263.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963292.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963263.png'" style="width: 45%"/></a>
-        <h4 style="color: whitesmoke;font-family: 'Open Sans', sans-serif; font-size: 18px">欧盘解盘</h4>
+        <h4 style="color: whitesmoke;font-family: 'Open Sans', sans-serif; font-size: 15px">欧盘解盘</h4>
       </div>
       <div class="col-md-3">
-        <a href="/attendance">
+        <a href="/attendance" id="attendance">
           <img src="https://cdn-icons-png.flaticon.com/512/2601/2601491.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601466.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601491.png'" style="width: 45%"/>
         </a>
-        <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 18px">常规网课</h4>
+        <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 15px">常规网课</h4>
       </div>
 
       <div class="col-md-3">
-        <a href="/attendance_total">
+        <a href="/attendance_total" id="attendance_totaldates2">
           <img src="https://cdn-icons-png.flaticon.com/512/5110/5110785.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/5110/5110770.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/5110/5110785.png'" style="width: 45%"/>
         </a>
-        <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 16px">统计</h4>
+        <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 15px">统计</h4>
       </div>
     </div>
     <br>
@@ -165,7 +173,7 @@
 
 <main id="main">
   <section id="about" class="about" style="background-color: #babbbc">
-    <div style="width: 90%; margin: -3% auto;" data-aos="fade-up">
+    <div style="width: 90%; margin: 0 auto;" data-aos="fade-up">
 
       <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
@@ -173,6 +181,7 @@
       <div class="row">
         <div class="col-md-3">
           <!--		Show Numbers Of Rows 		-->
+          <div class="flex">
           <select class="selectmenu-element" data-name="selectmenu-1" id="maxRows">
             <option disabled selected>Select Max Row</option>-->
             <option value="10">10</option>
@@ -181,41 +190,28 @@
             <option value="100">100</option>
             <option value="5000">Show ALL Rows</option>
           </select>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--          <a  id="deleteBtn" class="bttn4">-->
+<!--           <i class="fa-regular fa-trash-can fa-xl"></i>-->
+<!--         </a>-->
+            <div id="deleteDates">
+
+            </div>
+<!--            <a href="" id="deleteBtn2" th:href="@{records.deleteByDate('2023-01-10')}" class="bttn4" data-toggle="modal">-->
+<!--              <i class="fa-regular fa-trash-can fa-xl"></i>-->
+<!--            </a>-->
+
+
+          </div>
         </div>
 
 
         <div class="col-md-3" style="text-align: right">
           <select  class="selectmenu-element"  data-name="selectmenu-1" onchange="FilterkeyCode_all_table()" id="searchCode" name="searchCode">
-            <option disabled selected>Name</option>-->
-            <option value="0">Flynn</option>
-            <option value="111">William</option>
-            <option value="111111">Jason</option>
-            <option value="222">Zoe</option>
-            <option value="222222">Kimmy</option>
-            <option value="333">Emily</option>
-            <option value="3331">Nate</option>
-            <option value="3332">Tiffany</option>
-            <option value="333333">Sam</option>
-            <option value="3334">Ethan</option>
-            <option value="3335">Eric</option>
-            <option value="444">Jackson</option>
-            <option value="444222">Ann</option>
-            <option value="444444">Harris</option>
-            <option value="444555">Will</option>
-            <option value="555">Sherry</option>
-            <option value="555111">Zane</option>
-            <option value="555555">Elva</option>
-            <option value="666">JackHu</option>
-            <option value="777">Sheldon</option>
-            <option value="777111">LeoLiang</option>
-            <option value="777222">Bambi</option>
-            <option value="888">Mia</option>
-            <option value="8888">Michael</option>
-            <option value="888888">Leo</option>
-            <option value="999">Joy</option>
-            <option value="9991">Leah</option>
-            <option value="all" >All</option>
+            <option disabled selected>Name</option>
           </select>
+
         </div>
 
         <div class="col-md-3" style="text-align: left;">
@@ -294,10 +290,94 @@
     </div>
     </div>
     </div>
+
   </section><!-- End About Section -->
 
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="upload">
+          <div class="upload-files">
+            <header>
+              <p>
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                <span class="up">up</span>
+                <span class="load">load</span>
+              </p>
+            </header>
+            <div class="body" id="drop">
+              <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
+              <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href="" id="triggerFile">browse</a> to begin the upload</p>
+              <input type="file" name="file" multiple="multiple" form="uploadFile"/>
+            </div>
+            <footer>
+              <div class="divider">
+                <span><AR>FILES</AR></span>
+              </div>
+              <div class="list-files">
+                <!--   template   -->
+              </div>
+              <form th:action="@{/upload/choose}" method="post" enctype="multipart/form-data" id="uploadFile">
+                <!--                        <input type="file" name="file">-->
+                <!--        <input type="date" id="uploadDate" name="date">-->
+              </form>
+              <input  class="importar2" type="date"  id="uploadDate" required name="date" form="uploadFile">
+              <button class="importar" form="uploadFile">UPDATE FILES</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal HTML -->
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header flex-column">
+          <div class="icon-box">
+            <i class="material-icons">&#xE5CD;</i>
+          </div>
+          <h4 class="modal-title w-100">Are you sure?</h4>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete all the records of</p>
+          <h5 id="deleteDate" name="deleteDate"></h5>
+          <p>This process cannot be undone!</p>
+        </div>
+        <div class="modal-footer justify-content-center" id="buttons">
+<!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>-->
+<!--          <button type="button" class="btn btn-danger" id="delRef">Delete</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal HTML -->
+  <div id="result" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header flex-column">
+          <div class="icon-box2">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <a href="">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+          </a>
+        </div>
+        <div class="modal-body">
+          <p>You have successfully deleted all the records of </p>
+          <h5 id="deleteDate2"></h5>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <a href="">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </main><!-- End #main -->
 <!-- ======= Footer ======= -->
@@ -390,13 +470,18 @@
 <script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
 
+
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/table.js"></script>
 <script src="assets/js/pagination.js"></script>
-<script src="assets/js/datepicker.js"></script>
+<script src="assets/js/datepickerAttendance.js"></script>
 <script src="assets/js/screenshot.js"></script>
+
+<script src="assets/js/uploadBtn.js"></script>
+<!--<script src="assets/js/chart2.js"></script>-->
+
 
 </body>
 

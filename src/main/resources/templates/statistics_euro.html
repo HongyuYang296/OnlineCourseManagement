@@ -177,20 +177,20 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-4">
-                          <a href="statistics_us">
+                          <a href="statistics_us" id="statistics_us">
                             <img src="https://cdn-icons-png.flaticon.com/512/478/478075.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/478/478024.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/478/478075.png'"  style="width: 75%; max-width: 60px"/>
                           </a>
                           <p style="font-size: 14px;  padding-top: 5px; margin-left: -6px">美盘解盘</p>
                         </div>
                         <div class="col-md-4">
-                          <a href="/statistics_euro">
+                          <a href="/statistics_euro" id="statistics_euro">
                             <img src="https://cdn-icons-png.flaticon.com/512/2963/2963292.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963263.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963292.png'" style="width: 75%; max-width: 60px"/>
                           </a>
                           <p style="font-size: 14px; text-align: center; padding-top: 5px; margin-left: -6px;">欧盘解盘</p>
                         </div>
                         <div class="col-md-4">
 
-                          <a href="/statistics">
+                          <a href="/statistics" id="statistics">
                             <img src="https://cdn-icons-png.flaticon.com/512/2601/2601491.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601466.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601491.png'" style="width: 75%; max-width: 60px"/>
                           </a>
                           <p style="font-size: 14px; text-align: center; padding-top: 5px; margin-left: -6px;">常规网课</p>
@@ -253,7 +253,7 @@
                     </div>
 
                   </div>
-                  <span>Melbourne</span>
+                  <span class="fw-semibold d-block mb-1">Melbourne</span>
                   <h3 class="card-title text-nowrap mb-1">
                     <th:block th:text="${totalMel}"class="card-title mb-2">
                       <h3 style="font-size: 30px">text</h3>
@@ -269,56 +269,91 @@
         <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
           <div class="card">
             <div class="row row-bordered g-0">
-              <div class="col-md-8">
-                <h5 class="card-header m-0 me-2 pb-3">Customer analyse (Demo)</h5>
-                <div id="totalRevenueChart" class="px-2"></div>
+              <div class="col-md-9">
+                <h5 class="card-header m-0 me-2 pb-3">&nbsp; 欧盘网课收听人数统计 &nbsp;<i class="fa-solid fa-chart-line"></i></h5>
+
+
+<!--                <div id="totalRevenueChart" class="px-2"></div>-->
+                <div id="chartdiv"></div>
+
+
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="card-body">
                   <div class="text-center">
-                    <div class="dropdown">
-                      <button
-                              class="btn btn-sm btn-outline-primary dropdown-toggle"
-                              type="button"
-                              id="growthReportId"
-                              data-bs-toggle="dropdown"
-                              style="border-color: #F7A814; color: #F7A814"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                      >
-                        2022
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
-                        <a class="dropdown-item" href="javascript:void(0);">2021</a>
-                        <a class="dropdown-item" href="javascript:void(0);">2020</a>
-                        <a class="dropdown-item" href="javascript:void(0);">2019</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="growthChart" style="border-color: #F7A814"></div>
-                <div class="text-center fw-semibold pt-3 mb-2">XX% Customer Growth</div>
+                    <h6 id="description1">Total Analyse</h6>
+                    <select style="font-size: 12px; border-color: #F7A814; color: #F7A814; border-radius: 3px; height: 30px" class="selectmenu-element"  data-name="selectmenu-1"
+                            onchange="draw_chart_by_NameEu()" id="searchCode" name="searchCode">
+                      <option value="all" disabled selected>Name</option>
+                    </select>
+                    <br>
+                    <hr>
+                    <h6 id="weeks">All Weekday</h6>
+                    <div>
+                      <a href="javascript:void(0)" id="imgMon" onclick="chooseMon()">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8048/8048607.png"
+                             onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048600.png'"
+                             onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048607.png'"  style="width: 25%" alt="Mon">
+                      </a>
+                      &nbsp;
+                      &nbsp;
+                      <a href="javascript:void(0)" id="imgTue" onclick="chooseTue()">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8048/8048610.png"
+                             onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048603.png'"
+                             onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048610.png'"  style="width: 25%" alt="Tue">
+                      </a>
+                      <br>
+                      <br>
+                      <a href="javascript:void(0)" id="imgWed" onclick="chooseWed()">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8048/8048613.png"
+                             onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048606.png'"
+                             onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048613.png'"  style="width: 25%" alt="Wed" >
+                      </a>
+                      &nbsp;
+                      <a href="javascript:void(0)" id="imgThu" onclick="chooseThu()">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8048/8048616.png"
+                             onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048609.png'"
+                             onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048616.png'"  style="width: 25%" alt="Thu">
+                      </a>
+                      &nbsp;
+                      <a href="javascript:void(0)" id="imgFir" onclick="chooseFir()">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8048/8048619.png"
+                             onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048612.png'"
+                             onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/8048/8048619.png'"  style="width: 25%" alt="Fir">
+                      </a>
+                      <br>
+                      <br>
+                      <a href="javascript:void(0)" id="imgAll" onclick="chooseAll()">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5129/5129670.png"
+                             style="width: 30%" alt="all week">
+                      </a>
 
-                <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-                  <div class="d-flex">
-                    <div class="me-2">
-                      <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <small>2022</small>
-                      <h6 class="mb-0">xxx</h6>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <div class="me-2">
-                      <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <small>2021</small>
-                      <h6 class="mb-0">xxx</h6>
                     </div>
                   </div>
                 </div>
+<!--                <div id="growthChart" style="border-color: #F7A814"></div>-->
+<!--                <div class="text-center fw-semibold pt-3 mb-2">XX% Customer Growth</div>-->
+
+<!--                <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">-->
+<!--                  <div class="d-flex">-->
+<!--                    <div class="me-2">-->
+<!--                      <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>-->
+<!--                    </div>-->
+<!--                    <div class="d-flex flex-column">-->
+<!--                      <small>2022</small>-->
+<!--                      <h6 class="mb-0">xxx</h6>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="d-flex">-->
+<!--                    <div class="me-2">-->
+<!--                      <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>-->
+<!--                    </div>-->
+<!--                    <div class="d-flex flex-column">-->
+<!--                      <small>2021</small>-->
+<!--                      <h6 class="mb-0">xxx</h6>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
@@ -335,7 +370,7 @@
                     </div>
 
                   </div>
-                  <span class="d-block mb-1">Sydney</span>
+                  <span class="fw-semibold d-block mb-1">Sydney</span>
                   <h3 class="card-title text-nowrap mb-2">
                     <th:block th:text="${totalSyd}"class="card-title mb-2">
                       <h3 style="font-size: 30px">text</h3>
@@ -388,104 +423,107 @@
       <div class="row">
         <!-- Order Statistics -->
         <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
-          <div class="card h-100">
-            <div class="card-header d-flex align-items-center justify-content-between pb-0">
-              <div class="card-title mb-0">
-                <h5 class="m-0 me-2">Class Statistics (Demo)</h5>
-                <small class="text-muted">听课时长分析</small>
-              </div>
-              <div class="dropdown">
-                <button
-                        class="btn p-0"
-                        type="button"
-                        id="orederStatistics"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >
-                  <i class="bx bx-dots-vertical-rounded"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-                  <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Share</a>
+          <div style="background-color:gray;z-index: 9; opacity: 0.2">
+            <div class="card h-100" style="background-color: #FAFAFA">
+              <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                <div class="card-title mb-0">
+                  <h5 class="m-0 me-2">Class Statistics (Demo)</h5>
+                  <small class="text-muted">听课时长分析</small>
+                </div>
+                <div class="dropdown">
+                  <button
+                          class="btn p-0"
+                          type="button"
+                          id="orederStatistics"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                  >
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                    <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="d-flex flex-column align-items-center gap-1">
-                  <h2 class="mb-2">
-                    <th:block th:text="${total}"class="card-title mb-2">
-                      <h3 style="font-size: 30px">text</h3>
-                    </th:block>
-                  </h2>
-                  <span>Total Customers</span>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="d-flex flex-column align-items-center gap-1">
+                    <h2 class="mb-2">
+                      <th:block th:text="${total}"class="card-title mb-2">
+                        <h3 style="font-size: 30px">text</h3>
+                      </th:block>
+                    </h2>
+
+                    <span>Total Customers</span>
+                  </div>
+                  <div id="orderStatisticsChart"></div>
                 </div>
-                <div id="orderStatisticsChart"></div>
-              </div>
-              <ul class="p-0 m-0">
-                <li class="d-flex mb-4 pb-1">
-                  <div class="avatar flex-shrink-0 me-3">
+                <ul class="p-0 m-0">
+                  <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-primary"
                             ><i class="bx bx-mobile-alt"></i
                             ></span>
-                  </div>
-                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                    <div class="me-2">
-                      <h6 class="mb-0">忠实客户</h6>
-                      <small class="text-muted">听课时长 more than 1h</small>
                     </div>
-                    <div class="user-progress">
-                      <small class="fw-semibold">xx</small>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">忠实客户</h6>
+                        <small class="text-muted">听课时长 more than 1h</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">xx</small>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li class="d-flex mb-4 pb-1">
-                  <div class="avatar flex-shrink-0 me-3">
-                    <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
-                  </div>
-                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                    <div class="me-2">
-                      <h6 class="mb-0">普通客户</h6>
-                      <small class="text-muted">听课时长 0.5h ~ 1h</small>
+                  </li>
+                  <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                      <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
                     </div>
-                    <div class="user-progress">
-                      <small class="fw-semibold">xx</small>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">普通客户</h6>
+                        <small class="text-muted">听课时长 0.5h ~ 1h</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">xx</small>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li class="d-flex mb-4 pb-1">
-                  <div class="avatar flex-shrink-0 me-3">
-                    <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
-                  </div>
-                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                    <div class="me-2">
-                      <h6 class="mb-0">参与</h6>
-                      <small class="text-muted">听课时长 less than 0.5h</small>
+                  </li>
+                  <li class="d-flex mb-4 pb-1">
+                    <div class="avatar flex-shrink-0 me-3">
+                      <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
                     </div>
-                    <div class="user-progress">
-                      <small class="fw-semibold">xx</small>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">参与</h6>
+                        <small class="text-muted">听课时长 less than 0.5h</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">xx</small>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li class="d-flex">
-                  <div class="avatar flex-shrink-0 me-3">
+                  </li>
+                  <li class="d-flex">
+                    <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-secondary"
                             ><i class="bx bx-football"></i
                             ></span>
-                  </div>
-                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                    <div class="me-2">
-                      <h6 class="mb-0">路过</h6>
-                      <small class="text-muted">听课时长 less than 5 mins</small>
                     </div>
-                    <div class="user-progress">
-                      <small class="fw-semibold">99</small>
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">路过</h6>
+                        <small class="text-muted">听课时长 less than 5 mins</small>
+                      </div>
+                      <div class="user-progress">
+                        <small class="fw-semibold">99</small>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -493,57 +531,59 @@
 
         <!-- Expense Overview -->
         <div class="col-md-6 col-lg-4 order-1 mb-4">
-          <div class="card h-100">
-            <div class="card-header">
-              <ul class="nav nav-pills" role="tablist">
-                <li class="nav-item">
-                  <button
-                          type="button"
-                          class="nav-link active"
-                          role="tab"
-                          style="background-color: #F7A814"
-                          data-bs-toggle="tab"
-                          data-bs-target="#navs-tabs-line-card-income"
-                          aria-controls="navs-tabs-line-card-income"
-                          aria-selected="true"
-                  >
-                    Tab1
-                  </button>
-                </li>
-                <li class="nav-item">
-                  <button type="button" class="nav-link" role="tab">Tab2</button>
-                </li>
-                <li class="nav-item">
-                  <button type="button" class="nav-link" role="tab">Tab3</button>
-                </li>
-              </ul>
-            </div>
-            <div class="card-body px-0">
-              <div class="tab-content p-0">
-                <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
-                  <div class="d-flex p-4 pt-3">
-                    <div class="avatar flex-shrink-0 me-3">
-                      <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
-                    </div>
-                    <div>
-                      <small class="text-muted d-block">其他分析</small>
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 me-1">xxx</h6>
-                        <small class="text-success fw-semibold">
-                          <i class="bx bx-chevron-up"></i>
-                          xx%
-                        </small>
+          <div style="background-color:gray;z-index: 9; opacity: 0.2">
+            <div class="card h-100" style="background-color: #FAFAFA">
+              <div class="card-header">
+                <ul class="nav nav-pills" role="tablist">
+                  <li class="nav-item">
+                    <button
+                            type="button"
+                            class="nav-link active"
+                            role="tab"
+                            style="background-color: #F7A814"
+                            data-bs-toggle="tab"
+                            data-bs-target="#navs-tabs-line-card-income"
+                            aria-controls="navs-tabs-line-card-income"
+                            aria-selected="true"
+                    >
+                      Tab1
+                    </button>
+                  </li>
+                  <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab">Tab2</button>
+                  </li>
+                  <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab">Tab3</button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body px-0">
+                <div class="tab-content p-0">
+                  <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+                    <div class="d-flex p-4 pt-3">
+                      <div class="avatar flex-shrink-0 me-3">
+                        <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
+                      </div>
+                      <div>
+                        <small class="text-muted d-block">其他分析 (demo)</small>
+                        <div class="d-flex align-items-center">
+                          <h6 class="mb-0 me-1">xxx</h6>
+                          <small class="text-success fw-semibold">
+                            <i class="bx bx-chevron-up"></i>
+                            xx%
+                          </small>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div id="incomeChart"></div>
-                  <div class="d-flex justify-content-center pt-4 gap-2">
-                    <div class="flex-shrink-0">
-                      <div id="expensesOfWeek"></div>
-                    </div>
-                    <div>
-                      <p class="mb-n1 mt-1">Expenses This Week</p>
-                      <small class="text-muted">$xxx less than last week</small>
+                    <div id="incomeChart"></div>
+                    <div class="d-flex justify-content-center pt-4 gap-2">
+                      <div class="flex-shrink-0">
+                        <div id="expensesOfWeek"></div>
+                      </div>
+                      <div>
+                        <p class="mb-n1 mt-1">Expenses This Week</p>
+                        <small class="text-muted">$xxx less than last week</small>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -554,11 +594,11 @@
         <!--/ Expense Overview -->
 
         <!-- Transactions -->
-        <div class="col-md-6 col-lg-4 order-2 mb-4" style="padding-top: -200px; margin-top: -200px">
+        <div class="col-md-6 col-lg-4 order-2 mb-4" style="padding-top: -200px; margin-top: -250px">
           <div id="screenShot">
             <div class="card h-100">
               <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="card-title m-0 me-2">Attendance Rank</h5>
+                <h5 class="card-title m-0 me-2">Attendance Rank (欧盘)</h5>
                 <img src="https://cdn-icons-png.flaticon.com/512/2963/2963292.png" style="width: 35px">
                 <div id="dates" style="text-align: center; font-size: 18px; color: rgba(67, 89, 113, 0.6)">
                   <th:block th:text="${date}">
@@ -709,6 +749,9 @@
 <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
 
+<script src="https://kit.fontawesome.com/b83f27d12f.js" crossorigin="anonymous"></script>
+
+
 
 <script src="../assets/vendor/js/menu.js"></script>
 <!-- endbuild -->
@@ -721,21 +764,71 @@
 
 <!-- Page JS -->
 <script src="../assets/js/dashboards-analytics.js"></script>
+<!--chart-->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/table.js"></script>
 <script src="assets/js/search.js"></script>
-<script src="assets/js/datepicker.js"></script>
+<script src="assets/js/datepickerStatistic.js"></script>
 <script src="assets/js/uploadBtn.js"></script>
 <script src="assets/js/screenshot.js"></script>
+<script src="assets/js/chart.js"></script>
+<script src="assets/js/chartsEu.js"></script>
 
+<style>
+
+  #chartdiv {
+    max-width:80vh;
+    height: 380px;
+    font-size: 16px;
+  }
+</style>
 
 
 
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="upload">
+        <div class="upload-files">
+          <header>
+            <p>
+              <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+              <span class="up">up</span>
+              <span class="load">load</span>
+            </p>
+          </header>
+          <div class="body" id="drop">
+            <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
+            <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href="" id="triggerFile">browse</a> to begin the upload</p>
+            <input type="file" name="file" multiple="multiple" form="uploadFile"/>
+          </div>
+          <footer>
+            <div class="divider">
+              <span><AR>FILES</AR></span>
+            </div>
+            <div class="list-files">
+              <!--   template   -->
+            </div>
+            <form th:action="@{/upload/choose}" method="post" enctype="multipart/form-data" id="uploadFile">
+              <!--                        <input type="file" name="file">-->
+              <!--        <input type="date" id="uploadDate" name="date">-->
+            </form>
+            <input  class="importar2" type="date"  id="uploadDate" required name="date" form="uploadFile">
+            <button class="importar" form="uploadFile">UPDATE FILES</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -43,49 +43,57 @@ public class StatisticController {
     @ResponseBody
     public List<Object[]> test(){
         List<Object[]> map= service.getResult();
-        for (Object[] objects : map){
-            String date = objects[0].toString();
-            try {
-                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
-                objects[0] = date1.getTime();
-
-//                System.out.println(date +"\t"+date1);
-//                System.out.println(date1.getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            System.out.print(objects[0]);
-            System.out.print(objects[1]);
-        }
+        convertTime(map);
         System.out.print(" ");
         System.out.print("test map: ");
         System.out.print(map);
         return map;
     }
 
-    @RequestMapping("/method3")
+    @RequestMapping("/methodEu")
     @ResponseBody
-    public List<Object[]> test2(@Param("searchCode") String searchCode){
-        List<Object[]> map= service.getOneResult(searchCode);
-        for (Object[] objects : map){
-            String date = objects[0].toString();
-            try {
-                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
-                objects[0] = date1.getTime();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            System.out.print(objects[0]);
-            System.out.print(objects[1]);
-        }
-        System.out.print(map);
+    public List<Object[]> testEu(){
+        List<Object[]> map= service.getResultEu();
+        convertTime(map);
         return map;
     }
+    @RequestMapping("/methodUs")
+    @ResponseBody
+    public List<Object[]> testUs(){
+        List<Object[]> map= service.getResultUs();
+        convertTime(map);
+        return map;
+    }
+
 
     @RequestMapping("/getAllName")
     @ResponseBody
     public List<Object[]> getName(){
         List<Object[]> map= service.getNameResult();
+        convertTime(map);
+        System.out.print(map);
+        return map;
+    }
+
+    @RequestMapping("/getAllNameEu")
+    @ResponseBody
+    public List<Object[]> getNameEu(){
+        List<Object[]> map= service.getNameResultEu();
+        convertTime(map);
+        System.out.print(map);
+        return map;
+    }
+    @RequestMapping("/getAllNameUs")
+    @ResponseBody
+    public List<Object[]> getNameUs(){
+        List<Object[]> map= service.getNameResultUs();
+        convertTime(map);
+        System.out.print(map);
+        return map;
+    }
+
+
+    public void convertTime(List<Object[]> map) {
         for (Object[] objects : map){
             String date = objects[0].toString();
             try {
@@ -94,12 +102,9 @@ public class StatisticController {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            System.out.print(objects[0]);
-            System.out.print(objects[1]);
         }
-        System.out.print(map);
-        return map;
     }
+
 
 
 
@@ -133,15 +138,17 @@ public class StatisticController {
             String totalMel = service.totalMel(searchDate);
             String totalSyd = service.totalSyd(searchDate);
             String unknown = service.unknownGeneral(searchDate);
-            if (unknown == null) {
-                unknown = "0";
-            }else if (total == null) {
-                total = "0";
-            }else if (totalMel == null){
-                totalMel = "0";
-            }else if (totalSyd == null){
-                totalSyd = "0";
-            }
+                if (unknown == null) {
+                    unknown = "0";
+                }else if (total == null) {
+                    total = "0";
+                    totalMel = "0";
+                    totalSyd = "0";
+                }else if (totalMel == null){
+                    totalMel = "0";
+                }else if (totalSyd == null){
+                    totalSyd = "0";
+                }
             Integer totals = Integer.parseInt(total) + Integer.parseInt(unknown);
             model.addAttribute("unknown",unknown);
 
@@ -165,6 +172,8 @@ public class StatisticController {
                 unknown = "0";
             }else if (total == null) {
                 total = "0";
+                totalMel = "0";
+                totalSyd = "0";
             }else if (totalMel == null){
                 totalMel = "0";
             }else if (totalSyd == null){
@@ -201,6 +210,8 @@ public class StatisticController {
                 unknown = "0";
             }else if (total == null) {
                 total = "0";
+                totalMel = "0";
+                totalSyd = "0";
             }else if (totalMel == null){
                 totalMel = "0";
             }else if (totalSyd == null){
@@ -229,6 +240,8 @@ public class StatisticController {
                 unknown = "0";
             }else if (total == null) {
                 total = "0";
+                totalMel = "0";
+                totalSyd = "0";
             }else if (totalMel == null){
                 totalMel = "0";
             }else if (totalSyd == null){
@@ -268,6 +281,8 @@ public class StatisticController {
                 unknown = "0";
             }else if (total == null) {
                 total = "0";
+                totalMel = "0";
+                totalSyd = "0";
             }else if (totalMel == null){
                 totalMel = "0";
             }else if (totalSyd == null){
@@ -296,6 +311,8 @@ public class StatisticController {
                 unknown = "0";
             }else if (total == null) {
                 total = "0";
+                totalMel = "0";
+                totalSyd = "0";
             }else if (totalMel == null){
                 totalMel = "0";
             }else if (totalSyd == null){

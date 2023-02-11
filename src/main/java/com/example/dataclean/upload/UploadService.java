@@ -61,6 +61,10 @@ public class UploadService {
         return (List<String>) repo.findDiffer();
     }
 
+    public void deleteByDate(String keyword){
+        repo.deleteByDate(keyword);
+    }
+
 
     public List<Attendance> searchGeneral(String keyword){
         return repo.searchGeneral(keyword);

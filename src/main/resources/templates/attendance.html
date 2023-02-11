@@ -47,8 +47,6 @@
   <link href="assets/css/userTable.css" rel="stylesheet">
 
 
-
-
   <!-- =======================================================
   * Template Name: Gp - v4.9.1
   * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
@@ -58,6 +56,7 @@
 </head>
 
 <body>
+
 
 
 </div>
@@ -99,7 +98,7 @@
       <div style="padding-top: 40px;text-align: center">
         <div class="row" style="padding-left: 5%; ">
           <div style="width: fit-content; text-align: right" class="col-lg-6">
-            <form th:action="@{attendance}" method="get">
+            <form th:action="@{attendance}" method="get" name="search_date">
               <input onchange="saveCookie()" style="width: 105px; height: 40px; font-size: 14px" type="date" class="date" id="searchDate" name="searchDate" placeholder="select date">
               <button style="height: 40px" class="button1" type="submit">Search</button>
             </form>
@@ -126,30 +125,30 @@
 
 
     <br>
-    <div class="row" style="width: 60vh; margin-left: 27%">
+    <div class="row" style="width: 45%; margin-left:26.5%; margin-top: 1%">
 
       <div class="col-md-3">
-        <a href="attendance_us">
+        <a href="attendance_us" id="attendance_us">
           <img src="https://cdn-icons-png.flaticon.com/512/478/478075.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/478/478024.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/478/478075.png'"  style="width: 45%"/>
         </a>
         <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 16px">美盘解盘</h4>
       </div>
 
       <div class="col-md-3" style="font-family:'Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial,'Lucida Grande',sans-serif;">
-        <a href="/attendance_euro">
+        <a href="/attendance_euro" id="attendance_euro">
           <img src="https://cdn-icons-png.flaticon.com/512/2963/2963263.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963292.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2963/2963263.png'" style="width: 45%"/></a>
         <h4 style="color: whitesmoke;font-family: 'Open Sans', sans-serif; font-size: 16px">欧盘解盘</h4>
       </div>
 
       <div class="col-md-3">
-        <a href="/attendance">
+        <a href="/attendance"  id="attendance">
           <img src="https://cdn-icons-png.flaticon.com/512/2601/2601466.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601491.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/2601/2601466.png'" style="width: 45%"/>
         </a>
         <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 16px">常规网课</h4>
       </div>
 
       <div class="col-md-3">
-        <a href="/attendance_total">
+        <a href="/attendance_total"  id="attendance_total">
           <img src="https://cdn-icons-png.flaticon.com/512/5110/5110770.png" onmouseover="this.src='https://cdn-icons-png.flaticon.com/512/5110/5110785.png'" onmouseout="this.src='https://cdn-icons-png.flaticon.com/512/5110/5110770.png'" style="width: 45%"/>
         </a>
         <h4 style="color: whitesmoke; font-family: 'Open Sans', sans-serif; font-size: 16px">统计</h4>
@@ -163,7 +162,7 @@
 
 <main id="main">
   <section id="about" class="about" style="background-color: #babbbc">
-    <div style="width: 90%; margin: -3% auto;" data-aos="fade-up">
+    <div style="width: 90%; margin: 0 auto;" data-aos="fade-up">
       <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
       </div>
@@ -441,10 +440,11 @@
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/table.js"></script>
 <script src="assets/js/pagination.js"></script>
-<script src="assets/js/datepicker.js"></script>
+<script src="assets/js/datepickerAttendance.js"></script>
 <script src="assets/js/screenshot.js"></script>
+
 <script src="assets/js/uploadBtn.js"></script>
-<script src="assets/js/chart2.js"></script>
+<!--<script src="assets/js/chart2.js"></script>-->
 
 
 

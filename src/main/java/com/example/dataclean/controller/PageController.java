@@ -34,6 +34,11 @@ public class PageController {
         return "index2";
     }
 
+    @GetMapping(value = "/chart2")
+    public String button2() {
+        return "charts2";
+    }
+
 
 ////
 //    @GetMapping(value = "/test/search")

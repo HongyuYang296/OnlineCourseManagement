@@ -127,3 +127,53 @@ a:active {
 }
 
 
+.bttn4 {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    position: relative;
+}
+.bttn4:after {
+    transition: 0.3s all ease;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 3px;
+    border: 3px solid #333;
+}
+.bttn4:before {
+    content: '';
+    position: absolute;
+    border-radius: 3px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background: #babbbc;
+    z-index: -1;
+}
+.bttn4:hover:after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.bttn4:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.bttn4:active:before {
+    background-color: #E43636;
+}
+.bttn4:active:after {
+    border-color: #E43636;
+}
+
+

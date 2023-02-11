@@ -1,4 +1,38 @@
 
+$.ajax({
+    async: false,
+    url: "/usersData",
+    datatype: "JSON",
+    type: "Get",
+    success: function (data) {
+        tmp1 = data;
+        for(var i=0;i<data.length;i++)
+        {
+            var opt = new Option(data[i].name,data[i].code);
+            $("#searchCode").append(opt);
+        }
+        var opt2 = new Option("All","all");
+        $("#searchCode").append(opt2);
+    }
+});
+
+$.ajax({
+    async: false,
+    url: "/usersData",
+    datatype: "JSON",
+    type: "Get",
+    success: function (data) {
+        tmp1 = data;
+        for(var i=0;i<data.length;i++)
+        {
+            var opt = new Option(data[i].code,data[i].code);
+            $("#searchCode2").append(opt);
+        }
+        var opt2 = new Option("All","all");
+        $("#searchCode2").append(opt2);
+    }
+});
+
 
 getPagination('#table-id2');
 $('#maxRows').trigger('change');
@@ -224,6 +258,65 @@ function FilterkeyCode_all_table() {
     }
 
 }
+
+function FilterkeyCode_all_table2() {
+    var count = $('.responsive-table').children('tbody').children('tr:first-child').children('td').length;
+    // Declare variables
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("searchCode2");
+    var input_value = document.getElementById("searchCode2").value;
+    filter = input.value.toLowerCase();
+    console.log(input_value);
+    if(input_value !=='' && input_value !=='all'){
+        table = document.getElementById("table-id2");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 1; i < tr.length; i++) {
+            var flag = 0;
+            for(j = 0; j < count; j++){
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    var td_text = td.innerHTML;
+                    var filters = "^" +filter+ "$"
+                    console.log(filters)
+                    if (td.innerHTML.toLowerCase().match(filters)) {
+                        //var td_text = td.innerHTML;
+                        //td.innerHTML = 'shaban';
+                        flag = 1;
+                    } else {
+                        //DO NOTHING
+                    }
+                }
+            }
+            if(flag==1){
+                tr[i].style.display = "";
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    }else if (input_value ==='all') {
+        table = document.getElementById("table-id2");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            var flag = 0;
+            for(j = 0; j < count; j++){
+                td = tr[i].getElementsByTagName("td")[3];
+                flag = 1;
+            }
+            if(flag==1){
+                tr[i].style.display = "";
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    } else {
+        //RESET TABLE
+        $('#maxRows').trigger('change');
+    }
+
+}
+
+
 
 
 function FilterkeyGroup_all_table() {

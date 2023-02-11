@@ -46,16 +46,31 @@ public class StatisticServer {
     public String totalSyd(String keyword) {
         return repo.totalSyd(keyword);
     }
-
+//  get attendance result
     public List<Object[]> getResult(){
-
         return repo.getAttendanceResult();
     }
-
     public List<Object[]> getNameResult(){
-
         return repo.getNameResult();
     }
+
+    //  get attendance_euro result
+    public List<Object[]> getResultEu(){
+        return repo.getAttendanceResultEu();
+    }
+    public List<Object[]> getNameResultEu(){
+        return repo.getNameResultEu();
+    }
+
+    //  get attendance_us result
+    public List<Object[]> getResultUs(){
+        return repo.getAttendanceResultUs();
+    }
+    public List<Object[]> getNameResultUs(){
+        return repo.getNameResultUs();
+    }
+
+
 
     public List<Object[]> getOneResult(String keyword){
         return repo.getOneResult(keyword);
