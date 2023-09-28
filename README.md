@@ -1,2 +1,2 @@
 # OnlineCourseManagement
-Online Course Management system for prospero market Pty Ltd
+Online Course Management system for Prospero market Pty Ltd
